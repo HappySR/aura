@@ -1,32 +1,39 @@
 # Aura: Adaptive Unified Resilience and Alerts
+
 A Modular Multi-Disaster Alert and Management System.
 
 ## Objective
+
 A modular, scalable, and deeply functional disaster alert system that prioritizes usability, reliability, and preparedness. Each disaster type operates as a self-contained module, enabling detailed management and future expansion without compromising system integrity. Initially designed and tested for the ByteHacks hackathon.
 
 ## Core Philosophy
 
 1. **Comprehensive Coverage, Not Overcrowding**
+
    - Deep, focused implementation for each disaster module.
    - Purposeful feature development based on necessity.
    - Quality over quantity approach.
 
-2. **Scalability and Modularity** 
+2. **Scalability and Modularity**
+
    - Organic system growth capability.
    - Independent disaster modules.
    - Non-disruptive feature additions.
 
 3. **Practical User Empowerment**
+
    - Actionable insights over technical complexity.
    - Comprehensive guidance and resources.
    - Full disaster cycle support (pre, during, post).
 
 4. **Location-Aware Intelligence**
+
    - User location-specific alerts.
    - Risk profile customization.
    - Dynamic real-time recommendations.
 
 5. **Preparedness Focus**
+
    - Proactive user education.
    - Risk mitigation strategies.
    - Interactive preparedness drills.
@@ -42,6 +49,7 @@ A modular, scalable, and deeply functional disaster alert system that prioritize
 ## Disaster Modules
 
 ### 1. Flood Management
+
 - Warning System:
   - OpenWeatherMap integration.
   - IMD data utilization.
@@ -60,6 +68,7 @@ A modular, scalable, and deeply functional disaster alert system that prioritize
 - Compliance: India's Personal Data Protection Bill.
 
 ### 2. Earthquake Response
+
 - Alert System:
   - NCS API integration.
   - Magnitude reporting.
@@ -77,6 +86,7 @@ A modular, scalable, and deeply functional disaster alert system that prioritize
 - Standards: BIS seismic zoning compliance.
 
 ### 3. Forest Fire Protection
+
 - Detection System:
   - FSI FIRMS integration.
   - Satellite imagery analysis.
@@ -101,6 +111,7 @@ and more...
 ## Advanced Features
 
 ### 1. Risk Assessment
+
 - Dynamic risk scoring system.
 - Geographic factor analysis.
 - Historical data evaluation.
@@ -110,12 +121,14 @@ and more...
   - Environmental changes.
 
 ### 2. Preparedness Training
+
 - Interactive disaster guides.
 - Scenario-based simulations.
 - Response protocol training.
 - Regular drill schedules.
 
 ### 3. Post-Disaster Support
+
 - Aid service coordination.
 - Insurance claim assistance.
 - Community recovery tools.
@@ -125,6 +138,7 @@ and more...
   - Transportation coordination.
 
 ### 4. Community Network
+
 - Local assistance platforms.
 - Real-time crisis communication.
 - Community resource sharing.
