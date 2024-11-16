@@ -1,6 +1,6 @@
-import { fontFamily } from "tailwindcss/defaultTheme";
 import type { Config } from "tailwindcss";
 import tailwindcssAnimate from "tailwindcss-animate";
+import { fontFamily } from "tailwindcss/defaultTheme";
 
 const config: Config = {
   darkMode: ["class"],
@@ -89,7 +89,7 @@ const config: Config = {
           },
           "100%": {
             opacity: "1",
-            transform: "translate(-50%,-40%) scale(1)"
+            transform: "translate(-50%, -40%) scale(1)"
           }
         }
       },
