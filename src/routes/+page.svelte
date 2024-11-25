@@ -12,37 +12,23 @@
     Star,
     Boxes
   } from "lucide-svelte";
+  import { cn } from "$lib/utils";
 
   const disasterModules = [
     {
       name: "Forest Fire",
       description: "Real-time fire tracking & evacuation routes",
-      icon: Flame,
-      colors: {
-        base: "red",
-        gradient: "from-red-500/10 to-orange-500/10",
-        hoverGradient: "from-red-500/20 to-orange-500/20"
-      }
+      icon: Flame
     },
     {
       name: "Flood",
       description: "Flood history, water bed & intensity monitoring",
-      icon: Waves,
-      colors: {
-        base: "blue",
-        gradient: "from-blue-500/10 to-cyan-500/10",
-        hoverGradient: "from-blue-500/20 to-cyan-500/20"
-      }
+      icon: Waves
     },
     {
       name: "Earthquake",
       description: "Seismic history, area & intensity monitoring",
-      icon: Activity,
-      colors: {
-        base: "emerald",
-        gradient: "from-emerald-500/10 to-green-500/10",
-        hoverGradient: "from-emerald-500/20 to-green-500/20"
-      }
+      icon: Activity
     }
   ];
 
@@ -51,19 +37,22 @@
       icon: Shield,
       title: "Comprehensive Coverage",
       description:
-        "Deep, focused implementation for each disaster type with purposeful feature development."
+        "Deep, focused implementation for each disaster type with purposeful feature development.",
+      link: "/coverage"
     },
     {
       icon: Users,
       title: "Community Network",
       description:
-        "Local assistance platforms and real-time crisis communication for community support."
+        "Local assistance platforms and real-time crisis communication for community support.",
+      link: "/community"
     },
     {
       icon: BookOpen,
       title: "Preparedness Training",
       description:
-        "Interactive guides, scenario simulations and regular drill schedules for readiness."
+        "Interactive guides, scenario simulations and regular drill schedules for readiness.",
+      link: "/training"
     }
   ];
 
@@ -74,11 +63,7 @@
     { value: "99.9%", label: "System Uptime" }
   ];
 
-  const emergencyContacts = [
-    { name: "Emergency", number: "911" },
-    { name: "Poison Control", number: "1-800-222-1222" },
-    { name: "Crisis Hotline", number: "988" }
-  ];
+  const emergencyContacts = [];
 </script>
 
 <div
@@ -99,17 +84,26 @@
       >
         <div class="text-center md:flex-1 md:text-left">
           <h1
-            class="animate-fade-up xs:text-6xl bg-gradient-to-tr from-primary via-foreground to-accent bg-clip-text text-5xl font-extrabold tracking-tight text-transparent drop-shadow-sm sm:text-6xl md:text-7xl lg:text-8xl"
+            class={cn(
+              "animate-fade-up bg-gradient-to-tr from-primary via-foreground to-accent bg-clip-text text-5xl font-extrabold tracking-tight text-transparent drop-shadow-sm",
+              "xs:text-6xl sm:text-6xl md:text-7xl lg:text-8xl"
+            )}
           >
             AURA<span class="text-primary">.</span>
           </h1>
           <p
-            class="animate-fade-up xs:text-3xl mt-4 text-2xl font-semibold tracking-wide text-muted-foreground/90 sm:text-4xl md:text-5xl lg:text-6xl"
+            class={cn(
+              "animate-fade-up mt-4 text-2xl font-semibold tracking-wide text-muted-foreground/90",
+              "xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
+            )}
           >
             adaptive unified resilience & alerts
           </p>
           <p
-            class="animate-fade-up mt-8 max-w-2xl text-base leading-relaxed text-muted-foreground/90 backdrop-blur-sm sm:text-lg md:text-xl"
+            class={cn(
+              "animate-fade-up mt-8 max-w-2xl text-base leading-relaxed text-muted-foreground/90 backdrop-blur-sm",
+              "sm:text-lg md:text-xl"
+            )}
           >
             Your one-stop solution for disaster preparedness, response, and recovery.
           </p>
@@ -196,35 +190,64 @@
         </div>
 
         <div class="grid grid-cols-1 gap-8 sm:grid-cols-3">
-          {#each disasterModules as module}
+          {#each disasterModules as module, i}
             <div
-              class="group relative rounded-3xl border border-border/10 bg-background/10 p-8 backdrop-blur-sm transition-all duration-500 hover:scale-[1.02] hover:border-border/30 hover:bg-background/20 hover:shadow-xl"
+              class={cn(
+                "group relative rounded-3xl border border-border/10 bg-background/10 p-8 backdrop-blur-sm transition-all duration-500",
+                "hover:scale-[1.02] hover:border-border/30 hover:bg-background/20 hover:shadow-xl"
+              )}
             >
               <div
-                class="absolute -inset-1 rounded-[24px] bg-gradient-to-r {module.colors
-                  .gradient} blur-xl"
+                class={cn(
+                  "absolute -inset-1 rounded-[24px] bg-gradient-to-r blur-xl",
+                  i === 0
+                    ? "from-red-500/10 to-red-500/10"
+                    : i === 1
+                      ? "from-blue-500/10 to-blue-500/10"
+                      : "from-emerald-500/10 to-emerald-500/10"
+                )}
               ></div>
               <div
-                class="absolute -inset-1 rounded-[24px] bg-gradient-to-r {module.colors
-                  .hoverGradient} opacity-0 blur transition duration-500 group-hover:opacity-100"
+                class={cn(
+                  "absolute -inset-1 rounded-[24px] bg-gradient-to-r opacity-0 blur transition duration-500 group-hover:opacity-100",
+                  i === 0
+                    ? "from-red-500/20 to-red-500/20"
+                    : i === 1
+                      ? "from-blue-500/20 to-blue-500/20"
+                      : "from-emerald-500/20 to-emerald-500/20"
+                )}
               ></div>
 
               <div class="relative flex flex-col gap-4">
                 <div class="flex items-center gap-3">
                   <div
-                    class="rounded-xl bg-{module.colors
-                      .base}-500/10 p-2 transition-colors duration-500 group-hover:bg-{module.colors
-                      .base}-500/20"
+                    class={cn(
+                      "rounded-xl p-2 transition-colors duration-500",
+                      i === 0
+                        ? "bg-red-500/10 group-hover:bg-red-500/20"
+                        : i === 1
+                          ? "bg-blue-500/10 group-hover:bg-blue-500/20"
+                          : "bg-emerald-500/10 group-hover:bg-emerald-500/20"
+                    )}
                   >
                     <svelte:component
                       this={module.icon}
-                      class="h-6 w-6 text-{module.colors.base}-500 group-hover:animate-bounce"
+                      class={cn(
+                        "h-6 w-6",
+                        i === 0 ? "text-red-500" : i === 1 ? "text-blue-500" : "text-emerald-500",
+                        "group-hover:animate-bounce"
+                      )}
                     />
                   </div>
                   <h3
-                    class="text-2xl font-medium text-{module.colors
-                      .base}-500 transition-colors duration-500 group-hover:text-{module.colors
-                      .base}-400"
+                    class={cn(
+                      "text-2xl font-medium transition-colors duration-500",
+                      i === 0
+                        ? "text-red-500 group-hover:text-red-400"
+                        : i === 1
+                          ? "text-blue-500 group-hover:text-blue-400"
+                          : "text-emerald-500 group-hover:text-emerald-400"
+                    )}
                   >
                     {module.name}
                   </h3>
@@ -235,9 +258,14 @@
                   {module.description}
                 </p>
                 <div
-                  class="flex items-center gap-2 text-{module.colors
-                    .base}-500 transition-colors duration-500 group-hover:translate-x-1 group-hover:text-{module
-                    .colors.base}-400"
+                  class={cn(
+                    "flex items-center gap-2 transition-colors duration-500 group-hover:translate-x-1",
+                    i === 0
+                      ? "text-red-500 group-hover:text-red-400"
+                      : i === 1
+                        ? "text-blue-500 group-hover:text-blue-400"
+                        : "text-emerald-500 group-hover:text-emerald-400"
+                  )}
                 >
                   <span>Explore Module</span>
                   <ArrowRight
@@ -273,15 +301,29 @@
         <div class="relative grid grid-cols-1 gap-8 px-4 py-8 md:grid-cols-3 md:p-8">
           {#each coreFeatures as feature}
             <div
-              class="group rounded-2xl border border-border/30 bg-background/40 p-6 backdrop-blur-xl transition-all duration-300 hover:border-border/50 md:p-8"
+              class={cn(
+                "group rounded-2xl border border-border/30 bg-background/40 p-6 backdrop-blur-xl transition-all duration-300",
+                "hover:border-border/50 md:p-8"
+              )}
             >
               <div
                 class="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 transition-transform duration-300 group-hover:scale-110"
               >
-                <svelte:component this={feature.icon} class="h-6 w-6 text-primary" />
+                <feature.icon class="h-6 w-6 text-primary" />
               </div>
               <h3 class="mb-3 text-xl font-semibold">{feature.title}</h3>
               <p class="text-muted-foreground/70">{feature.description}</p>
+              {#if feature.link}
+                <a
+                  href={feature.link}
+                  class="mt-4 inline-flex items-center gap-2 text-sm text-primary opacity-70 transition-all duration-300 hover:underline hover:opacity-100"
+                >
+                  Read more
+                  <ArrowRight
+                    class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                  />
+                </a>
+              {/if}
             </div>
           {/each}
         </div>
@@ -289,7 +331,7 @@
 
       <!-- Emergency Stats Section -->
       <div class="relative w-full bg-gradient-to-b from-transparent to-primary/5 pt-24">
-        <div class="mx-auto max-w-7xl px-6 pb-20">
+        <div class="mx-auto max-w-7xl px-6 pb-40">
           <div class="grid grid-cols-1 gap-8 md:grid-cols-4">
             {#each emergencyStats as stat}
               <div class="text-center">
@@ -297,18 +339,6 @@
                 <div class="mt-2 text-sm text-muted-foreground/70">{stat.label}</div>
               </div>
             {/each}
-          </div>
-
-          <div class="mt-16 flex flex-col items-center justify-center gap-4 text-center">
-            <h4 class="text-xl font-semibold">Emergency Contacts</h4>
-            <div class="flex flex-wrap justify-center gap-4">
-              {#each emergencyContacts as contact}
-                <div class="rounded-lg bg-background/50 px-6 py-3 backdrop-blur-sm">
-                  <div class="font-semibold">{contact.name}</div>
-                  <div class="text-lg text-primary">{contact.number}</div>
-                </div>
-              {/each}
-            </div>
           </div>
         </div>
 

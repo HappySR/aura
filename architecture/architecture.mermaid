@@ -1,0 +1,77 @@
+flowchart TD
+    %% Style definitions
+    classDef broker fill:#ff9800,stroke:#e65100,color:white
+    classDef service fill:#2196f3,stroke:#1976d2,color:white
+    classDef storage fill:#4caf50,stroke:#388e3c,color:white
+    classDef monitoring fill:#9c27b0,stroke:#7b1fa2,color:white
+    classDef frontend fill:#03a9f4,stroke:#0288d1,color:white
+    classDef notification fill:#f44336,stroke:#d32f2f,color:white
+    classDef source fill:#795548,stroke:#5d4037,color:white
+
+    %% Broker subgraph
+    subgraph Broker["Message Broker (RabbitMQ)"]
+        T_Disaster("fa:fa-bell Topic: Updates")
+        T_Notifications("fa:fa-paper-plane Topic: Notifications")
+        T_AggregatedData("fa:fa-database Topic: Aggregated Data")
+    end
+    class T_Disaster,T_Notifications,T_AggregatedData broker
+
+    %% Monitoring subgraph
+    subgraph Monitoring
+        Grafana("fa:fa-chart-line Grafana")
+        Prometheus("fa:fa-search Prometheus")
+    end
+    class Grafana,Prometheus monitoring
+
+    %% Storage nodes
+    Postgres[("fa:fa-database PostgreSQL + PostGIS")]
+    Cache[("fa:fa-bolt Cache (Valkey)")]
+    class Postgres,Cache storage
+
+    %% Source nodes
+    API("fa:fa-cloud External APIs")
+    IoT("fa:fa-microchip IoT Sensors")
+    class API,IoT source
+
+    %% Service nodes
+    Aggregator("fa:fa-cogs Data Aggregator")
+    Producer("fa:fa-industry Ingestor")
+    Consumer("fa:fa-server Backend Services")
+    class Aggregator,Producer,Consumer service
+
+    %% Frontend nodes
+    Frontend("fa:fa-desktop Web Portal")
+    App("fa:fa-mobile-alt Mobile App")
+    class Frontend,App frontend
+
+    %% Notification subgraph
+    subgraph Notifications
+        SMS("fa:fa-sms SMS")
+        Email("fa:fa-envelope Email")
+        BrowserNotifications("fa:fa-bell Browser")
+    end
+    class SMS,Email,BrowserNotifications notification
+
+    %% Connections
+    API --> Producer
+    IoT --> Producer
+    Producer --> T_Disaster
+    Aggregator --> T_AggregatedData
+    T_Disaster --> Aggregator
+    T_AggregatedData --> Consumer
+    T_Notifications --> Consumer
+    Frontend --> Consumer
+    Consumer --> Frontend
+    App --> Consumer
+    Consumer --> App
+    T_Notifications --> SMS & Email & BrowserNotifications
+    Aggregator --> T_Notifications
+    Aggregator --> Postgres
+    Consumer --> Postgres
+    Consumer --> Cache
+    Postgres --> Consumer
+    Cache --> Consumer
+
+    %% Monitoring connections
+    Producer & Consumer & Aggregator & Broker & Postgres & Cache & Frontend --> Prometheus
+    Prometheus --> Grafana
