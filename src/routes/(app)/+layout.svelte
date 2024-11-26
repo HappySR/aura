@@ -1,5 +1,5 @@
 <script lang="ts">
-  import "../app.css";
+  import "../../app.css";
   import { ModeWatcher } from "mode-watcher";
   import RootMenuBar from "$lib/components/custom/RootMenuBar.svelte";
 

@@ -15,9 +15,40 @@
     MapPin,
     Github,
     Twitter,
-    Linkedin
+    Linkedin,
+    Search,
+    ChartArea
   } from "lucide-svelte";
   import { cn } from "$lib/utils";
+  import { fade } from "svelte/transition";
+
+  let showSearch = false;
+  let searchQuery = "";
+
+  const toggleSearch = (event: MouseEvent) => {
+    event.preventDefault();
+    event.stopPropagation();
+    showSearch = !showSearch;
+    if (showSearch) {
+      setTimeout(() => {
+        document.getElementById("search-input")?.focus();
+      }, 100);
+    }
+  };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    const searchModal = document.querySelector(".search-modal");
+    const searchButton = document.querySelector(".search-button");
+
+    if (
+      showSearch &&
+      searchModal &&
+      !searchModal.contains(event.target as Node) &&
+      !searchButton?.contains(event.target as Node)
+    ) {
+      showSearch = false;
+    }
+  };
 
   const disasterModules = [
     {
@@ -115,9 +146,193 @@
   };
 </script>
 
+<svelte:window on:click={handleClickOutside} />
+
+<!-- Mobile Search Button -->
+<button
+  onclick={toggleSearch}
+  class="fixed bottom-6 right-6 z-30 flex h-14 w-14 items-center justify-center rounded-full bg-primary text-background shadow-lg transition-all hover:scale-105 hover:opacity-90 md:hidden"
+>
+  <Search class="h-6 w-6" />
+</button>
+
 <div
   class="animate-fade-in relative flex min-h-[100vh] w-full flex-col items-center justify-center overflow-hidden bg-inherit px-4"
 >
+  <!-- Search Modal -->
+  {#if showSearch}
+    <div
+      transition:fade={{ duration: 200 }}
+      class="fixed inset-0 z-40 flex items-start justify-center bg-background/80 backdrop-blur-sm"
+    >
+      <div
+        class="search-modal m-4 mt-16 max-h-[90vh] w-full max-w-5xl overflow-y-auto rounded-2xl border border-border/50 bg-background/90 p-4 shadow-2xl backdrop-blur-xl sm:mt-32 sm:p-6"
+      >
+        <div class="relative">
+          <Search
+            class="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground/50"
+          />
+          <input
+            id="search-input"
+            type="text"
+            bind:value={searchQuery}
+            placeholder="Search for incidents, reports, or locations..."
+            class="w-full rounded-xl border border-border/50 bg-background/50 py-3 pl-12 pr-4 text-foreground/90 placeholder:text-muted-foreground/50 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+            autocomplete="off"
+            spellcheck="false"
+          />
+        </div>
+
+        {#if searchQuery}
+          <div class="mt-6 space-y-4">
+            <!-- Suggested Locations -->
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <h3 class="text-sm font-medium text-muted-foreground">Suggested Locations</h3>
+                <a href="/locations" class="text-xs text-primary hover:underline">View More</a>
+              </div>
+              <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+                <div
+                  class="group flex items-center gap-3 rounded-lg border border-border/50 bg-background/50 p-4 transition-all hover:border-primary/50 hover:bg-primary/5 hover:shadow-lg"
+                >
+                  <div class="rounded-full bg-red-500/10 p-2 group-hover:bg-red-500/20">
+                    <MapPin class="h-5 w-5 text-red-500" />
+                  </div>
+                  <div>
+                    <h4 class="font-medium group-hover:text-primary">XYZ Park</h4>
+                    <p class="text-sm text-muted-foreground">26.5833° N, 93.17° E</p>
+                  </div>
+                </div>
+                <div
+                  class="group flex items-center gap-3 rounded-lg border border-border/50 bg-background/50 p-4 transition-all hover:border-primary/50 hover:bg-primary/5 hover:shadow-lg"
+                >
+                  <div class="rounded-full bg-blue-500/10 p-2 group-hover:bg-blue-500/20">
+                    <MapPin class="h-5 w-5 text-blue-500" />
+                  </div>
+                  <div>
+                    <h4 class="font-medium group-hover:text-primary">ABC Forest</h4>
+                    <p class="text-sm text-muted-foreground">26.7456° N, 93.25° E</p>
+                  </div>
+                </div>
+                <div
+                  class="group flex items-center gap-3 rounded-lg border border-border/50 bg-background/50 p-4 transition-all hover:border-primary/50 hover:bg-primary/5 hover:shadow-lg"
+                >
+                  <div class="rounded-full bg-green-500/10 p-2 group-hover:bg-green-500/20">
+                    <MapPin class="h-5 w-5 text-green-500" />
+                  </div>
+                  <div>
+                    <h4 class="font-medium group-hover:text-primary">Safety City</h4>
+                    <p class="text-sm text-muted-foreground">26.4789° N, 93.08° E</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Search Companion -->
+            <div class="space-y-3">
+              <h3 class="text-sm font-medium text-muted-foreground">Search Companion</h3>
+
+              <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+                <a
+                  href="/modules/forest-fire"
+                  class="group relative block overflow-hidden rounded-lg border border-border/50 p-4 transition-all hover:border-red-500/50 hover:shadow-lg"
+                >
+                  <div
+                    class="absolute inset-0 bg-gradient-to-br from-red-500/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100"
+                  ></div>
+                  <div class="flex flex-col gap-3">
+                    <div class="flex items-center justify-between">
+                      <div class="flex items-center gap-3">
+                        <div class="rounded-full bg-red-500/10 p-2 group-hover:bg-red-500/20">
+                          <Flame class="h-5 w-5 text-red-500" />
+                        </div>
+                        <div>
+                          <h4 class="font-medium group-hover:text-red-500">Forest Fire Activity</h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+
+                <a
+                  href="/modules/flood"
+                  class="group relative block overflow-hidden rounded-lg border border-border/50 p-4 transition-all hover:border-blue-500/50 hover:shadow-lg"
+                >
+                  <div
+                    class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100"
+                  ></div>
+                  <div class="flex flex-col gap-3">
+                    <div class="flex items-center justify-between">
+                      <div class="flex items-center gap-3">
+                        <div class="rounded-full bg-blue-500/10 p-2 group-hover:bg-blue-500/20">
+                          <ChartArea class="h-5 w-5 text-blue-500" />
+                        </div>
+                        <div>
+                          <h4 class="font-medium group-hover:text-blue-500">Flood Activity</h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+
+                <a
+                  href="/modules/earthquake"
+                  class="group relative block overflow-hidden rounded-lg border border-border/50 p-4 transition-all hover:border-emerald-500/50 hover:shadow-lg"
+                >
+                  <div
+                    class="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100"
+                  ></div>
+                  <div class="flex flex-col gap-3">
+                    <div class="flex items-center justify-between">
+                      <div class="flex items-center gap-3">
+                        <div
+                          class="rounded-full bg-emerald-500/10 p-2 group-hover:bg-emerald-500/20"
+                        >
+                          <Activity class="h-5 w-5 text-emerald-500" />
+                        </div>
+                        <div>
+                          <h4 class="font-medium group-hover:text-emerald-500">
+                            Earthquake Activity
+                          </h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        {:else}
+          <div class="mt-4 space-y-2 px-2">
+            <p class="text-sm text-muted-foreground/70">Quick Links</p>
+            <div class="flex flex-wrap gap-2">
+              <Badge
+                variant="outline"
+                class="cursor-pointer transition-colors hover:border-red-500/50 hover:bg-red-500/10 hover:text-red-500"
+                >Forest Fire</Badge
+              >
+              <Badge
+                variant="outline"
+                class="cursor-pointer transition-colors hover:border-blue-500/50 hover:bg-blue-500/10 hover:text-blue-500"
+                >Flood Alerts</Badge
+              >
+              <Badge
+                variant="outline"
+                class="cursor-pointer transition-colors hover:border-yellow-500/50 hover:bg-yellow-500/10 hover:text-yellow-500"
+                >Earthquake Data</Badge
+              >
+              <Badge
+                variant="outline"
+                class="cursor-pointer transition-colors hover:border-green-500/50 hover:bg-green-500/10 hover:text-green-500"
+                >Emergency Contact</Badge
+              >
+            </div>
+          </div>
+        {/if}
+      </div>
+    </div>
+  {/if}
+
   <!-- Background Gradient -->
   <div class="absolute inset-0 flex items-center justify-center">
     <div
@@ -156,6 +371,15 @@
           >
             Your one-stop solution for disaster preparedness, response, and recovery.
           </p>
+
+          <!-- Search Button -->
+          <button
+            onclick={toggleSearch}
+            class="search-button mt-6 hidden items-center gap-2 rounded-full bg-primary px-6 py-3 text-background transition-all hover:scale-105 hover:opacity-90 md:inline-flex"
+          >
+            <Search class="h-5 w-5" />
+            <span class="font-medium"> Explore </span>
+          </button>
         </div>
 
         <!-- Risk Assessment Card -->
@@ -221,7 +445,7 @@
       </div>
 
       <!-- Disaster Modules Section -->
-      <div class="animate-fade-up mx-auto mt-24 flex w-full max-w-6xl flex-col gap-12">
+      <div class="animate-fade-up mx-auto mt-12 flex w-full max-w-6xl flex-col gap-12">
         <div class="relative mb-12 text-center">
           <div
             class="absolute -inset-[50px] animate-[pulse_6s_ease-in-out_infinite] rounded-full bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 opacity-30 blur-2xl"

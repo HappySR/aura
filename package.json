@@ -19,6 +19,7 @@
     "@sveltejs/adapter-node": "^5.2.9",
     "@sveltejs/kit": "^2.8.2",
     "@sveltejs/vite-plugin-svelte": "^4.0.1",
+    "@types/d3": "^7.4.3",
     "@types/eslint": "^9.6.1",
     "autoprefixer": "^10.4.20",
     "bits-ui": "1.0.0-next.64",
@@ -49,6 +50,7 @@
     "@oslojs/encoding": "^1.1.0",
     "@tailwindcss/forms": "^0.5.9",
     "@tailwindcss/typography": "^0.5.15",
+    "d3": "^7.9.0",
     "drizzle-orm": "^0.33.0",
     "postgres": "^3.4.5",
     "svelte-motion": "^0.12.2"

@@ -13,7 +13,7 @@
 <div class="fixed top-0 z-50 w-full">
   <!-- Desktop Menu -->
   <Menubar.Root
-    class="hidden rounded-none border-b border-none bg-background/20 px-2 backdrop-blur-sm md:flex lg:px-4"
+    class="hidden rounded-none border-b border-none bg-background/20 px-2 backdrop-blur-3xl md:flex lg:px-4"
   >
     <Menubar.Menu>
       <Menubar.Trigger class="font-bold">
@@ -42,7 +42,7 @@
       >
         <User class="h-4 w-4" />
       </Menubar.Trigger>
-      <Menubar.Content class="border border-border/50 bg-background/30 backdrop-blur-sm">
+      <Menubar.Content class="border border-border/50 bg-background/30 backdrop-blur-3xl">
         <Menubar.Item class="hover:bg-background/40 hover:text-primary">
           <UserPlus class="mr-2 h-4 w-4" />
           Sign Up
@@ -68,7 +68,7 @@
 
   <!-- Mobile Menu -->
   <div
-    class="flex items-center justify-between bg-background/20 px-4 py-2 backdrop-blur-sm md:hidden"
+    class="flex items-center justify-between bg-background/20 px-4 py-2 backdrop-blur-3xl md:hidden"
   >
     <a href="/" class="font-bold">AURA.</a>
 
@@ -81,13 +81,13 @@
 
   {#if isMenuOpen}
     <div
-      class="absolute left-0 top-full w-full space-y-4 border-b bg-background/20 p-4 shadow-lg backdrop-blur-sm md:hidden"
+      class="absolute left-0 top-[calc(100%-1px)] w-full space-y-4 border-b bg-background/20 p-4 shadow-lg backdrop-blur-3xl md:hidden"
       transition:slide={{ duration: 200, easing: quintOut }}
     >
       <div class="grid grid-cols-2 gap-3">
         <Button
           variant="ghost"
-          class="flex items-center space-x-2 rounded-lg border border-border/50 bg-background/30 backdrop-blur-sm transition-all duration-200 hover:scale-[1.02] hover:bg-background/40 hover:text-primary hover:shadow-md"
+          class="flex items-center space-x-2 rounded-lg border border-border/50 bg-background/30 backdrop-blur-3xl transition-all duration-200 hover:scale-[1.02] hover:bg-background/40 hover:text-primary hover:shadow-md"
           onclick={() => {
             const newMode = $mode === "dark" ? "light" : "dark";
             setMode(newMode);
@@ -103,7 +103,7 @@
         <Button
           variant="ghost"
           href="/settings"
-          class="flex items-center space-x-2 rounded-lg border border-border/50 bg-background/30 backdrop-blur-sm transition-all duration-200 hover:scale-[1.02] hover:bg-background/40 hover:text-primary hover:shadow-md"
+          class="flex items-center space-x-2 rounded-lg border border-border/50 bg-background/30 backdrop-blur-3xl transition-all duration-200 hover:scale-[1.02] hover:bg-background/40 hover:text-primary hover:shadow-md"
         >
           <Settings class="h-4 w-4" />
           <span>Settings</span>
@@ -111,7 +111,7 @@
         <Button
           variant="ghost"
           href="/signup"
-          class="flex items-center space-x-2 rounded-lg border border-border/50 bg-background/30 backdrop-blur-sm transition-all duration-200 hover:scale-[1.02] hover:bg-background/40 hover:text-primary hover:shadow-md"
+          class="flex items-center space-x-2 rounded-lg border border-border/50 bg-background/30 backdrop-blur-3xl transition-all duration-200 hover:scale-[1.02] hover:bg-background/40 hover:text-primary hover:shadow-md"
         >
           <UserPlus class="h-4 w-4" />
           <span>Sign Up</span>
@@ -119,7 +119,7 @@
         <Button
           variant="ghost"
           href="/signin"
-          class="flex items-center space-x-2 rounded-lg border border-border/50 bg-background/30 backdrop-blur-sm transition-all duration-200 hover:scale-[1.02] hover:bg-background/40 hover:text-primary hover:shadow-md"
+          class="flex items-center space-x-2 rounded-lg border border-border/50 bg-background/30 backdrop-blur-3xl transition-all duration-200 hover:scale-[1.02] hover:bg-background/40 hover:text-primary hover:shadow-md"
         >
           <LogIn class="h-4 w-4" />
           <span>Sign In</span>
