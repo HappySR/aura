@@ -1,6 +1,5 @@
 <script lang="ts">
   import { Badge } from "$lib/components/ui/badge";
-  import { Button } from "$lib/components/ui/button";
   import {
     Flame,
     Waves,
@@ -34,17 +33,38 @@
 
   const coreFeatures = [
     {
-      icon: Shield,
-      title: "Comprehensive Coverage",
+      icon: Activity,
+      title: "Real-time Alerts",
       description:
-        "Deep, focused implementation for each disaster type with purposeful feature development.",
-      link: "/coverage"
+        "Get instant notifications about emergencies, weather alerts, evacuation orders and critical updates through SMS, email, and push notifications to stay informed and prepared.",
+      link: "/alerts"
+    },
+    {
+      icon: BookOpen,
+      title: "History Tracking",
+      description:
+        "Access detailed historical data of past incidents, response patterns, and outcomes to better understand and prepare for future emergencies.",
+      link: "/history"
+    },
+    {
+      icon: Boxes,
+      title: "IoT Integration",
+      description:
+        "Connect with smart sensors and devices to monitor environmental conditions, detect hazards early, and automate emergency responses.",
+      link: "/iot"
+    },
+    {
+      icon: Shield,
+      title: "Custom Mapping",
+      description:
+        "Interactive maps with real-time updates, custom overlays, and location-based services to visualize threats and plan evacuation routes.",
+      link: "/maps"
     },
     {
       icon: Users,
       title: "Community Network",
       description:
-        "Local assistance platforms and real-time crisis communication for community support.",
+        "Engage with the community, fill surveys, share your thoughts and help everybody stay safe!",
       link: "/community"
     },
     {
@@ -296,7 +316,7 @@
         </div>
 
         <div
-          class="absolute inset-0 rounded-3xl bg-gradient-to-r from-primary/5 via-accent/5 to-primary/5 blur-3xl"
+          class="absolute inset-0 rounded-3xl bg-gradient-to-r from-primary/15 via-accent/15 to-primary/15 blur-3xl"
         ></div>
         <div class="relative grid grid-cols-1 gap-8 px-4 py-8 md:grid-cols-3 md:p-8">
           {#each coreFeatures as feature}
@@ -312,7 +332,7 @@
                 <feature.icon class="h-6 w-6 text-primary" />
               </div>
               <h3 class="mb-3 text-xl font-semibold">{feature.title}</h3>
-              <p class="text-muted-foreground/70">{feature.description}</p>
+              <p class="text-muted-foreground/70">{@html feature.description}</p>
               {#if feature.link}
                 <a
                   href={feature.link}
