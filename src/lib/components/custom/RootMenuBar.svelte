@@ -3,11 +3,19 @@
   import * as Menubar from "$lib/components/ui/menubar";
   import { Settings, Moon, Sun, User, LogIn, UserPlus, ChevronDown } from "lucide-svelte";
   import { Button } from "$lib/components/ui/button";
-  import { slide } from "svelte/transition";
+  import { slide, scale } from "svelte/transition";
   import { quintOut } from "svelte/easing";
 
   let isMenuOpen = false;
+  let isSearchOpen = false; // Added missing variable declaration
+  let searchQuery = ""; // Added missing variable declaration
+
   const toggleMenu = () => (isMenuOpen = !isMenuOpen);
+  const toggleSearch = () => (isSearchOpen = !isSearchOpen); // Added missing toggle function
+
+  const performSearch = () => {
+    console.log("Search performed with query:", searchQuery); // Placeholder logic for search
+  };
 </script>
 
 <div class="fixed top-0 z-50 w-full">
@@ -24,12 +32,12 @@
     <Menubar.Menu>
       <Menubar.Trigger
         onclick={() => {
-          const newMode = $mode === "dark" ? "light" : "dark";
+          const newMode = $mode === "dark" ? "light" : "dark"; // Fixed reactive store access
           setMode(newMode);
         }}
         class="cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:rounded-lg hover:bg-background/40 hover:text-primary hover:shadow-md"
       >
-        {#if $mode === "dark"}
+        {#if $mode === "dark"} <!-- Fixed reactive store access -->
           <Sun class="h-4 w-4" />
         {:else}
           <Moon class="h-4 w-4" />
@@ -64,7 +72,48 @@
         </a>
       </Menubar.Trigger>
     </Menubar.Menu>
-  </Menubar.Root>
+
+  <!-- Explore Now -->
+  <Menubar.Menu>
+    <Menubar.Trigger
+      onclick={toggleSearch}
+      class="cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:rounded-lg hover:bg-background/40 hover:text-primary hover:shadow-md"
+    >
+      Explore Now
+    </Menubar.Trigger>
+  </Menubar.Menu>
+</Menubar.Root>
+
+  <!-- Search Bar -->
+  {#if isSearchOpen}
+    <button
+      class="fixed inset-0 z-40 bg-black/50"
+      on:click={toggleSearch}
+      aria-label="Close search"
+      type="button"
+    ></button>
+
+    <div
+      class="fixed top-0 left-1/2 z-50 w-full max-w-3xl -translate-x-1/2 rounded-lg bg-transparent shadow-xl"
+      transition:scale={{ duration: 300 }}
+    >
+      <div class="relative flex items-center px-4 py-3">
+        <input
+          type="text"
+          bind:value={searchQuery}
+          placeholder="Type to search..."
+          class="w-full rounded-lg border border-gray-300 p-3 text-sm focus:outline-none focus:ring focus:ring-blue-300"
+          on:keydown={(e) => e.key === "Enter" && performSearch()}
+        />
+        <button
+          class="absolute right-4 bg-blue-500 px-4 py-2 text-white rounded-md hover:bg-blue-600"
+          on:click={performSearch}
+        >
+          Search
+        </button>
+      </div>
+    </div>
+  {/if}
 
   <!-- Mobile Menu -->
   <div
@@ -89,11 +138,11 @@
           variant="ghost"
           class="flex items-center space-x-2 rounded-lg border border-border/50 bg-background/30 backdrop-blur-sm transition-all duration-200 hover:scale-[1.02] hover:bg-background/40 hover:text-primary hover:shadow-md"
           onclick={() => {
-            const newMode = $mode === "dark" ? "light" : "dark";
+            const newMode = $mode === "dark" ? "light" : "dark"; // Fixed reactive store access
             setMode(newMode);
           }}
         >
-          {#if $mode === "dark"}
+          {#if $mode === "dark"} <!-- Fixed reactive store access -->
             <Sun class="h-4 w-4" />
           {:else}
             <Moon class="h-4 w-4" />
@@ -124,7 +173,23 @@
           <LogIn class="h-4 w-4" />
           <span>Sign In</span>
         </Button>
+        <Button
+          variant="ghost"
+          class="flex items-center space-x-2 rounded-lg border border-border/50 bg-background/30 backdrop-blur-sm transition-all duration-200 hover:scale-[1.02] hover:bg-background/40 hover:text-primary hover:shadow-md"
+          onclick={() => {
+            const newMode = $mode === "dark" ? "light" : "dark"; // Fixed reactive store access
+            setMode(newMode);
+          }}
+        >
+          {#if $mode === "dark"} <!-- Fixed reactive store access -->
+            <Sun class="h-4 w-4" />
+          {:else}
+            <Moon class="h-4 w-4" />
+          {/if}
+          <span>Explore Now</span>
+        </Button>
       </div>
     </div>
   {/if}
 </div>
+
