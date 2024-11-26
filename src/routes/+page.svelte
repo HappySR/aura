@@ -9,7 +9,13 @@
     Users,
     BookOpen,
     Star,
-    Boxes
+    Boxes,
+    Mail,
+    Phone,
+    MapPin,
+    Github,
+    Twitter,
+    Linkedin
   } from "lucide-svelte";
   import { cn } from "$lib/utils";
 
@@ -77,13 +83,33 @@
   ];
 
   const emergencyStats = [
-    { value: "24/7", label: "Emergency Response" },
-    { value: "15,000+", label: "Registered Users" },
     { value: "500+", label: "Emergency Centers" },
-    { value: "99.9%", label: "System Uptime" }
+    { value: "3", label: "Disaster Modules" },
+    { value: "6", label: "Core Features" },
+    { value: "24/7", label: "Support Available" }
   ];
 
-  const emergencyContacts = [];
+  const footerLinks = {
+    company: [
+      { label: "About", href: "/about" },
+      { label: "Careers", href: "/careers" }
+    ],
+    resources: [
+      { label: "Documentation", href: "/docs" },
+      { label: "Training", href: "/training" },
+      { label: "Privacy Policy", href: "/privacy" }
+    ],
+    contact: {
+      email: "aura@aurialis.com",
+      phone: "+91 9876-543-210",
+      address: "123 Emergency Ave, Safety City, SC 12345"
+    },
+    social: [
+      { icon: Github, href: "https://github.com/aura" },
+      { icon: Twitter, href: "https://twitter.com/aura" },
+      { icon: Linkedin, href: "https://linkedin.com/company/aura" }
+    ]
+  };
 </script>
 
 <div
@@ -362,20 +388,96 @@
           </div>
         </div>
 
-        <!-- Bottom wave decoration -->
-        <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
-          <svg
-            class="relative block h-[100px] w-full"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1200 120"
-            preserveAspectRatio="none"
-          >
-            <path
-              d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-              class="fill-primary/10"
-            ></path>
-          </svg>
-        </div>
+        <!-- Footer -->
+        <footer class="relative w-full bg-background/80 backdrop-blur-xl">
+          <div class="mx-auto max-w-7xl px-6 py-12">
+            <div class="grid grid-cols-1 gap-8 md:grid-cols-4">
+              <!-- Company Info -->
+              <div class="space-y-4">
+                <h4 class="text-lg font-semibold">Aurialis</h4>
+                <ul class="space-y-2">
+                  {#each footerLinks.company as link}
+                    <li>
+                      <a
+                        href={link.href}
+                        class="text-sm text-muted-foreground/70 transition-colors hover:text-primary"
+                      >
+                        {link.label}
+                      </a>
+                    </li>
+                  {/each}
+                </ul>
+              </div>
+
+              <!-- Resources -->
+              <div class="space-y-4">
+                <h4 class="text-lg font-semibold">Resources</h4>
+                <ul class="space-y-2">
+                  {#each footerLinks.resources as link}
+                    <li>
+                      <a
+                        href={link.href}
+                        class="text-sm text-muted-foreground/70 transition-colors hover:text-primary"
+                      >
+                        {link.label}
+                      </a>
+                    </li>
+                  {/each}
+                </ul>
+              </div>
+
+              <!-- Contact Info -->
+              <div class="space-y-4">
+                <h4 class="text-lg font-semibold">Contact</h4>
+                <ul class="space-y-2">
+                  <li class="flex items-center gap-2 text-sm text-muted-foreground/70">
+                    <Mail class="h-4 w-4" />
+                    {footerLinks.contact.email}
+                  </li>
+                  <li class="flex items-center gap-2 text-sm text-muted-foreground/70">
+                    <Phone class="h-4 w-4" />
+                    {footerLinks.contact.phone}
+                  </li>
+                  <li class="flex items-center gap-2 text-sm text-muted-foreground/70">
+                    <MapPin class="h-4 w-4" />
+                    {footerLinks.contact.address}
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Social Links -->
+              <div class="space-y-4">
+                <h4 class="text-lg font-semibold">Follow Us</h4>
+                <div class="flex gap-4">
+                  {#each footerLinks.social as link}
+                    <a
+                      href={link.href}
+                      class="rounded-full bg-primary/10 p-2 text-primary transition-colors hover:bg-primary/20"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <svelte:component this={link.icon} class="h-5 w-5" />
+                    </a>
+                  {/each}
+                </div>
+              </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="mt-12 border-t border-border/30 pt-8">
+              <div class="flex flex-col items-center justify-between gap-4 text-center md:flex-row">
+                <p class="text-sm text-muted-foreground/70">
+                  AURA © {new Date().getFullYear()} <b>Aurialis</b>. All rights reserved.
+                </p>
+                <div class="flex items-center gap-2">
+                  <Badge variant="outline" class="text-xs">PDP</Badge>
+                  <Badge variant="outline" class="text-xs">CCPA</Badge>
+                  <Badge variant="outline" class="text-xs">GDPR</Badge>
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
       </div>
     </div>
   </div>
