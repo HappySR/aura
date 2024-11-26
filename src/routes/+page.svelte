@@ -23,17 +23,20 @@
     {
       name: "Forest Fire",
       description: "Real-time fire tracking & evacuation routes",
-      icon: Flame
+      icon: Flame,
+      link: "/modules/forest-fire"
     },
     {
       name: "Flood",
       description: "Flood history, water bed & intensity monitoring",
-      icon: Waves
+      icon: Waves,
+      link: "/modules/flood"
     },
     {
       name: "Earthquake",
       description: "Seismic history, area & intensity monitoring",
-      icon: Activity
+      icon: Activity,
+      link: "/modules/earthquake"
     }
   ];
 
@@ -83,10 +86,10 @@
   ];
 
   const emergencyStats = [
-    { value: "500+", label: "Emergency Centers" },
-    { value: "3", label: "Disaster Modules" },
-    { value: "6", label: "Core Features" },
-    { value: "24/7", label: "Support Available" }
+    { value: "24/7", label: "Support Available" },
+    { value: "98%", label: "Response Rate" },
+    { value: "15min", label: "Average Response Time" },
+    { value: "10+", label: "Regional Coverage" }
   ];
 
   const footerLinks = {
@@ -313,7 +316,9 @@
                         : "text-emerald-500 group-hover:text-emerald-400"
                   )}
                 >
-                  <span>Explore Module</span>
+                  <a href={module.link}>
+                    <span>Explore Module</span>
+                  </a>
                   <ArrowRight
                     class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
                   />
@@ -349,7 +354,7 @@
             <div
               class={cn(
                 "group rounded-2xl border border-border/30 bg-background/40 p-6 backdrop-blur-xl transition-all duration-300",
-                "hover:border-border/50 md:p-8"
+                "hover:-translate-y-2 hover:border-border/50 hover:shadow-lg md:p-8"
               )}
             >
               <div
