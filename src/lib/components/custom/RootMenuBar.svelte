@@ -42,15 +42,23 @@
       >
         <User class="h-4 w-4" />
       </Menubar.Trigger>
-      <Menubar.Content class="border border-border/50 bg-background/30 backdrop-blur-3xl">
-        <Menubar.Item class="hover:bg-background/40 hover:text-primary">
-          <UserPlus class="mr-2 h-4 w-4" />
-          Sign Up
+      <Menubar.Content class="border-none bg-background/20 backdrop-blur-3xl">
+        <Menubar.Item
+          class="rounded-lg bg-transparent backdrop-blur-xl hover:bg-background/30 hover:text-primary"
+        >
+          <a href="/sign-up" class="flex items-center">
+            <UserPlus class="mr-2 h-4 w-4" />
+            Sign Up
+          </a>
         </Menubar.Item>
         <Menubar.Separator />
-        <Menubar.Item class="hover:bg-background/40 hover:text-primary">
-          <LogIn class="mr-2 h-4 w-4" />
-          Sign In
+        <Menubar.Item
+          class="rounded-lg bg-transparent backdrop-blur-xl hover:bg-background/30 hover:text-primary"
+        >
+          <a href="/sign-in" class="flex items-center">
+            <LogIn class="mr-2 h-4 w-4" />
+            Sign In
+          </a>
         </Menubar.Item>
       </Menubar.Content>
     </Menubar.Menu>
@@ -110,7 +118,7 @@
         </Button>
         <Button
           variant="ghost"
-          href="/signup"
+          href="/sign-up"
           class="flex items-center space-x-2 rounded-lg border border-border/50 bg-background/30 backdrop-blur-3xl transition-all duration-200 hover:scale-[1.02] hover:bg-background/40 hover:text-primary hover:shadow-md"
         >
           <UserPlus class="h-4 w-4" />
@@ -118,7 +126,7 @@
         </Button>
         <Button
           variant="ghost"
-          href="/signin"
+          href="/sign-in"
           class="flex items-center space-x-2 rounded-lg border border-border/50 bg-background/30 backdrop-blur-3xl transition-all duration-200 hover:scale-[1.02] hover:bg-background/40 hover:text-primary hover:shadow-md"
         >
           <LogIn class="h-4 w-4" />

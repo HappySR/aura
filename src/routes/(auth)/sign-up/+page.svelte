@@ -1,11 +1,12 @@
 <script lang="ts">
-  import { Button } from "$lib/components/ui/button";
+  import { cn } from "$lib/utils";
   import { Input } from "$lib/components/ui/input";
   import { Label } from "$lib/components/ui/label";
-  import { Mail, Lock, ArrowRight, Eye, EyeOff, ArrowLeft } from "lucide-svelte";
-  import { cn } from "$lib/utils";
+  import { Button } from "$lib/components/ui/button";
+  import { Mail, Lock, User, ArrowRight, Eye, EyeOff, ArrowLeft } from "lucide-svelte";
 
   let showPassword = false;
+  let showConfirmPassword = false;
 </script>
 
 <div
@@ -21,12 +22,12 @@
   <div class="relative z-10 w-full max-w-md space-y-8">
     <div class="text-center">
       <h1
-        class="animate-fade-up bg-gradient-to-tr from-primary via-foreground to-accent bg-clip-text text-4xl font-extrabold tracking-tight text-transparent drop-shadow-sm"
+        class="animate-fade-up mt-8 bg-gradient-to-tr from-primary via-foreground to-accent bg-clip-text text-4xl font-extrabold tracking-tight text-transparent drop-shadow-sm"
       >
-        Welcome Back<span class="text-primary">.</span>
+        Create Account<span class="text-primary">.</span>
       </h1>
       <p class="animate-fade-up mt-4 text-lg text-muted-foreground/70">
-        Sign in to continue to your dashboard
+        Sign up to get started with your new account
       </p>
     </div>
 
@@ -42,6 +43,14 @@
         )}
       >
         <div class="space-y-2">
+          <Label for="name">Full Name</Label>
+          <div class="relative">
+            <User class="absolute left-3 top-[0.6rem] h-5 w-5 text-muted-foreground/50" />
+            <Input type="text" id="name" placeholder="John Doe" class="pl-10" />
+          </div>
+        </div>
+
+        <div class="mt-4 space-y-2">
           <Label for="email">Email</Label>
           <div class="relative">
             <Mail class="absolute left-3 top-[0.6rem] h-5 w-5 text-muted-foreground/50" />
@@ -73,34 +82,45 @@
           </div>
         </div>
 
-        <div
-          class="mt-6 flex flex-col space-y-4 text-sm text-muted-foreground/70 sm:flex-row sm:items-center sm:justify-between sm:space-y-0"
-        >
-          <a
-            href="/forgot-password"
-            class="text-primary transition-colors hover:text-primary/80 hover:underline"
-          >
-            Forgot your password?
-          </a>
+        <div class="mt-4 space-y-2">
+          <Label for="confirmPassword">Confirm Password</Label>
+          <div class="relative">
+            <Lock class="absolute left-3 top-[0.6rem] h-5 w-5 text-muted-foreground/50" />
+            <Input
+              type={showConfirmPassword ? "text" : "password"}
+              id="confirmPassword"
+              placeholder="••••••••"
+              class="pl-10 pr-10"
+            />
+            <button
+              type="button"
+              class="absolute right-[0.6rem] top-[0.6rem] text-muted-foreground/50 hover:text-muted-foreground"
+              on:click={() => (showConfirmPassword = !showConfirmPassword)}
+            >
+              {#if showConfirmPassword}
+                <EyeOff class="h-5 w-5" />
+              {:else}
+                <Eye class="h-5 w-5" />
+              {/if}
+            </button>
+          </div>
         </div>
 
         <Button type="submit" class="group mt-6 w-full">
-          Sign In
+          Sign Up
           <ArrowRight
             class="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
           />
         </Button>
 
-        <div class="mt-5 flex items-center justify-between text-sm text-muted-foreground/70">
-          <div class="flex items-center space-x-2">
-            <span>Don't have an account?</span>
-            <a
-              href="/sign-up"
-              class="font-medium text-primary transition-colors hover:text-primary/80 hover:underline"
-            >
-              Sign Up!
-            </a>
-          </div>
+        <div class="mt-5 flex items-center space-x-2 text-sm text-muted-foreground/70">
+          <span>Already have an account?</span>
+          <a
+            href="/sign-in"
+            class="font-medium text-primary transition-colors hover:text-primary/80 hover:underline"
+          >
+            Sign In!
+          </a>
         </div>
 
         <div
