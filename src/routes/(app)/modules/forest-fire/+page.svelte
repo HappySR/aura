@@ -20,7 +20,8 @@
     Clock,
     ChartArea,
     History,
-    DollarSign
+    DollarSign,
+    MessageCircle
   } from "lucide-svelte";
   import { onMount } from "svelte";
   // @ts-ignore
@@ -35,20 +36,20 @@
 
   // Environmental conditions
   let environmentalData = {
-    riskLevel: "High",
-    temperature: "38°C",
-    windSpeed: "25 km/h",
-    humidity: "15%",
+    riskLevel: "Critical",
+    temperature: "258°C",
+    windSpeed: "15 km/h",
+    humidity: "7%",
     lastUpdated: new Date().toLocaleTimeString()
   };
 
   // IoT sensor data
   let iotData = {
-    latency: "52ms",
+    latency: "34ms",
     signalStrength: "Good",
     lastSync: new Date().toLocaleTimeString(),
     activeDevices: 8,
-    dataQuality: "98%"
+    dataQuality: "94.7%"
   };
 
   // Type definitions
@@ -84,7 +85,7 @@
     {
       location: "Sector XYZ-001",
       severity: "Critical",
-      area: "250 hectares",
+      area: "2.5 km²",
       containment: "35%",
       evacuationStatus: "Mandatory",
       distance: "2.5 km away"
@@ -92,7 +93,7 @@
     {
       location: "Zone XYZ-002",
       severity: "Moderate",
-      area: "120 hectares",
+      area: "1.2 km²",
       containment: "65%",
       evacuationStatus: "Advisory",
       distance: "5 km away"
@@ -100,7 +101,7 @@
     {
       location: "Region XYZ-003",
       severity: "High",
-      area: "180 hectares",
+      area: "1.8 km²",
       containment: "45%",
       evacuationStatus: "Mandatory",
       distance: "3.8 km away"
@@ -114,10 +115,10 @@
       date: "2023-06-15",
       location: "Sector XYZ-001",
       severity: "Critical",
-      area: "450 hectares",
+      area: "4.5 km²",
       duration: "72 hours",
       casualties: 0,
-      propertyDamage: "$20M",
+      propertyDamage: "₹16.5 Cr",
       containmentTime: "96 hours",
       description:
         "One of the largest fires in the region's history, requiring extensive aerial support."
@@ -127,10 +128,10 @@
       date: "2023-08-22",
       location: "Zone XYZ-002",
       severity: "High",
-      area: "280 hectares",
+      area: "2.8 km²",
       duration: "48 hours",
       casualties: 0,
-      propertyDamage: "$1.2M",
+      propertyDamage: "₹1 Cr",
       containmentTime: "60 hours",
       description:
         "Rapid spread due to strong winds, successfully contained with minimal structural damage."
@@ -140,10 +141,10 @@
       date: "2023-09-30",
       location: "Region XYZ-003",
       severity: "Moderate",
-      area: "150 hectares",
+      area: "1.5 km²",
       duration: "36 hours",
       casualties: 0,
-      propertyDamage: "$800K",
+      propertyDamage: "₹66 Lakh",
       containmentTime: "48 hours",
       description: "Early detection allowed for quick response and minimal environmental impact."
     }
@@ -344,13 +345,13 @@
           <div
             class="group rounded-xl border border-border/50 bg-background/20 p-4 backdrop-blur-sm transition-all hover:border-red-500/50"
           >
-            <div class="flex items-center gap-3">
+            <div class="flex h-full items-center justify-center gap-3">
               <div class="rounded-full bg-red-500/10 p-2">
                 <ChartArea class="h-5 w-5 text-red-500" />
               </div>
               <div>
                 <p class="text-sm font-medium text-muted-foreground">Area affected</p>
-                <p class="text-lg font-bold text-red-500">89 km<sup>2</sup></p>
+                <p class="text-lg font-bold text-red-500">89 km²</p>
               </div>
             </div>
           </div>
@@ -358,13 +359,13 @@
           <div
             class="group rounded-xl border border-border/50 bg-background/20 p-4 backdrop-blur-sm transition-all hover:border-red-500/50"
           >
-            <div class="flex items-center gap-3">
+            <div class="flex h-full items-center justify-center gap-3">
               <div class="rounded-full bg-red-500/10 p-2">
                 <DollarSign class="h-5 w-5 text-red-500" />
               </div>
               <div>
-                <p class="text-sm text-muted-foreground">Estimated Loss</p>
-                <p class="font-medium text-red-500">$2.5M</p>
+                <p class="text-sm text-muted-foreground">Property Damage</p>
+                <p class="font-medium text-red-500">₹25 Cr</p>
               </div>
             </div>
           </div>
@@ -372,7 +373,7 @@
           <div
             class="group col-span-2 rounded-xl border border-border/50 bg-background/20 p-4 backdrop-blur-sm transition-all hover:border-red-500/50 lg:col-span-1"
           >
-            <div class="flex items-center gap-3">
+            <div class="flex h-full items-center justify-center gap-3">
               <div class="rounded-full bg-red-500/10 p-2">
                 <AlertTriangle class="h-5 w-5 text-red-500" />
               </div>
@@ -400,7 +401,7 @@
         on:click={handleLocationUpdate}
         on:keydown={(e: KeyboardEvent) => e.key === "Enter" && handleLocationUpdate(e)}
       >
-        <div class="absolute right-4 top-4 flex gap-2">
+        <div class="absolute right-4 top-4 z-10 flex gap-2">
           <button
             class="rounded-full bg-background/80 p-2 text-primary transition-colors hover:bg-background/90"
             on:click={toggleFullscreen}
@@ -521,6 +522,18 @@
           </div>
         </div>
 
+        <div class="flex justify-start sm:justify-end">
+          <button
+            class="group relative inline-flex items-center justify-center gap-2 rounded-xl border border-border/50 bg-background/50 px-4 py-2 text-sm font-medium text-foreground shadow-lg backdrop-blur-sm transition-all hover:border-red-500/50 hover:bg-background/90 focus:outline-none focus:ring-2 focus:ring-red-500/50 active:scale-95 sm:text-base"
+          >
+            <span>more parameters</span>
+            <ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            <div
+              class="absolute -inset-px rounded-xl bg-gradient-to-r from-red-500/10 to-orange-500/10 opacity-0 blur transition duration-300 group-hover:opacity-100"
+            ></div>
+          </button>
+        </div>
+
         <p class="mt-1 text-sm text-muted-foreground">
           <Badge variant="outline" class="flex w-fit items-center gap-2">
             <Clock class="h-3 w-3" />
@@ -582,6 +595,18 @@
           </div>
         </div>
 
+        <div class="flex justify-start sm:justify-end">
+          <button
+            class="group relative inline-flex items-center justify-center gap-2 rounded-xl border border-border/50 bg-background/50 px-4 py-2 text-sm font-medium text-foreground shadow-lg backdrop-blur-sm transition-all hover:border-red-500/50 hover:bg-background/90 focus:outline-none focus:ring-2 focus:ring-red-500/50 active:scale-95 sm:text-base"
+          >
+            <span>more parameters</span>
+            <ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            <div
+              class="absolute -inset-px rounded-xl bg-gradient-to-r from-red-500/10 to-orange-500/10 opacity-0 blur transition duration-300 group-hover:opacity-100"
+            ></div>
+          </button>
+        </div>
+
         <p class="mt-1 text-sm text-muted-foreground">
           <Badge variant="outline" class="flex w-fit items-center gap-2">
             <Clock class="h-3 w-3" />
@@ -610,7 +635,7 @@
 
       <!-- Community Support -->
       <div
-        class="col-span-full rounded-xl border border-border/50 bg-background/50 p-4 backdrop-blur-sm sm:p-6 md:col-span-2"
+        class="col-span-full h-fit rounded-xl border border-border/50 bg-background/50 p-4 backdrop-blur-sm sm:p-6 md:col-span-2"
       >
         <div class="mb-4 flex items-center gap-2">
           <Users class="h-5 w-5 text-primary" />
@@ -625,8 +650,8 @@
             <button
               class="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
             >
-              <Signal class="h-4 w-4" />
-              Join Local Chat
+              <MessageCircle class="h-4 w-4" />
+              Join Regional Chat
             </button>
             <button
               class="inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-background px-4 py-2 text-sm font-medium text-foreground hover:bg-accent"

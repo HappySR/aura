@@ -1,7 +1,6 @@
 <script lang="ts">
   import { Badge } from "$lib/components/ui/badge";
   import {
-    Flame,
     Wind,
     Thermometer,
     ArrowRight,
@@ -20,7 +19,9 @@
     Clock,
     ChartArea,
     History,
-    DollarSign
+    DollarSign,
+    Waves,
+    MessageCircle
   } from "lucide-svelte";
   import { onMount } from "svelte";
   // @ts-ignore
@@ -28,27 +29,27 @@
 
   // Location data
   const currentLocation = {
-    region: "XYZ Park",
+    region: "XYZ River Bank",
     coordinates: { lat: 26.5833, lng: 93.17 },
     lastUpdated: new Date()
   };
 
   // Environmental conditions
   let environmentalData = {
-    riskLevel: "High",
-    temperature: "38°C",
-    windSpeed: "25 km/h",
-    humidity: "15%",
+    riskLevel: "Critical",
+    soilSaturation: "85%",
+    rainfallIntensity: "25 mm/hr",
+    waterLevel: "2.5m",
     lastUpdated: new Date().toLocaleTimeString()
   };
 
   // IoT sensor data
   let iotData = {
     latency: "52ms",
-    signalStrength: "Good",
+    signalStrength: "Excellent",
     lastSync: new Date().toLocaleTimeString(),
-    activeDevices: 8,
-    dataQuality: "98%"
+    activeDevices: 29,
+    dataQuality: "98.4%"
   };
 
   // Type definitions
@@ -84,7 +85,7 @@
     {
       location: "Sector XYZ-001",
       severity: "Critical",
-      area: "250 hectares",
+      area: "2.5 km²",
       containment: "35%",
       evacuationStatus: "Mandatory",
       distance: "2.5 km away"
@@ -92,7 +93,7 @@
     {
       location: "Zone XYZ-002",
       severity: "Moderate",
-      area: "120 hectares",
+      area: "1.2 km²",
       containment: "65%",
       evacuationStatus: "Advisory",
       distance: "5 km away"
@@ -100,7 +101,7 @@
     {
       location: "Region XYZ-003",
       severity: "High",
-      area: "180 hectares",
+      area: "1.8 km²",
       containment: "45%",
       evacuationStatus: "Mandatory",
       distance: "3.8 km away"
@@ -114,10 +115,10 @@
       date: "2023-06-15",
       location: "Sector XYZ-001",
       severity: "Critical",
-      area: "450 hectares",
+      area: "4.5 km²",
       duration: "72 hours",
       casualties: 0,
-      propertyDamage: "$20M",
+      propertyDamage: "₹1.65 Cr",
       containmentTime: "96 hours",
       description:
         "One of the largest floods in the region's history, requiring extensive aerial support."
@@ -127,10 +128,10 @@
       date: "2023-08-22",
       location: "Zone XYZ-002",
       severity: "High",
-      area: "280 hectares",
+      area: "2.8 km²",
       duration: "48 hours",
       casualties: 0,
-      propertyDamage: "$1.2M",
+      propertyDamage: "₹99.6 L",
       containmentTime: "60 hours",
       description:
         "Rapid spread due to heavy rains, successfully contained with minimal structural damage."
@@ -140,10 +141,10 @@
       date: "2023-09-30",
       location: "Region XYZ-003",
       severity: "Moderate",
-      area: "150 hectares",
+      area: "1.5 km²",
       duration: "36 hours",
       casualties: 0,
-      propertyDamage: "$800K",
+      propertyDamage: "₹66.4 L",
       containmentTime: "48 hours",
       description: "Early detection allowed for quick response and minimal environmental impact."
     }
@@ -151,11 +152,19 @@
 
   // Safety guidelines
   const safetyGuidelines: SafetyGuideline[] = [
-    { id: 1, guideline: "Establish and maintain a defensible perimeter around your residence" },
-    { id: 2, guideline: "Prepare and regularly update your emergency evacuation strategy" },
-    { id: 3, guideline: "Maintain a well-stocked emergency supply kit" },
-    { id: 4, guideline: "Stay informed through official news channels and emergency alerts" },
-    { id: 5, guideline: "Comply immediately with all evacuation directives" }
+    { id: 1, guideline: "Move to higher ground immediately when flooding is expected" },
+    {
+      id: 2,
+      guideline: "Avoid walking or driving through flood waters - 6 inches can sweep you away"
+    },
+    {
+      id: 3,
+      guideline:
+        "Keep emergency supplies including drinking water, non-perishable food and medications"
+    },
+    { id: 4, guideline: "Monitor local news and weather alerts for flood warnings and updates" },
+    { id: 5, guideline: "Turn off utilities at main switches/valves if instructed to evacuate" },
+    { id: 6, guideline: "Have important documents in a waterproof container ready to take" }
   ];
 
   const footerLinks = {
@@ -344,13 +353,13 @@
           <div
             class="group rounded-xl border border-border/50 bg-background/20 p-4 backdrop-blur-sm transition-all hover:border-blue-500/50"
           >
-            <div class="flex items-center gap-3">
+            <div class="flex h-full items-center justify-center gap-3">
               <div class="rounded-full bg-blue-500/10 p-2">
                 <ChartArea class="h-5 w-5 text-blue-500" />
               </div>
               <div>
                 <p class="text-sm font-medium text-muted-foreground">Area affected</p>
-                <p class="text-lg font-bold text-blue-500">89 km<sup>2</sup></p>
+                <p class="text-lg font-bold text-blue-500">89 km²</p>
               </div>
             </div>
           </div>
@@ -358,13 +367,13 @@
           <div
             class="group rounded-xl border border-border/50 bg-background/20 p-4 backdrop-blur-sm transition-all hover:border-blue-500/50"
           >
-            <div class="flex items-center gap-3">
+            <div class="flex h-full items-center justify-center gap-3">
               <div class="rounded-full bg-blue-500/10 p-2">
                 <DollarSign class="h-5 w-5 text-blue-500" />
               </div>
               <div>
-                <p class="text-sm text-muted-foreground">Estimated Loss</p>
-                <p class="font-medium text-blue-500">$2.5M</p>
+                <p class="text-sm text-muted-foreground">Property Damage</p>
+                <p class="font-medium text-blue-500">₹27 Cr</p>
               </div>
             </div>
           </div>
@@ -372,7 +381,7 @@
           <div
             class="group col-span-2 rounded-xl border border-border/50 bg-background/20 p-4 backdrop-blur-sm transition-all hover:border-blue-500/50 lg:col-span-1"
           >
-            <div class="flex items-center gap-3">
+            <div class="flex h-full items-center justify-center gap-3">
               <div class="rounded-full bg-blue-500/10 p-2">
                 <AlertTriangle class="h-5 w-5 text-blue-500" />
               </div>
@@ -410,7 +419,7 @@
         </div>
 
         <div class="absolute bottom-4 right-4">
-          <Badge variant="outline" class="bg-blue-500/10 text-blue-500">Live Location</Badge>
+          <Badge variant="outline" class="bg-red-500/10 text-red-500">Live Location</Badge>
         </div>
       </div>
     </div>
@@ -467,7 +476,6 @@
       </div>
     </div>
 
-    <!-- Environmental & IoT Monitoring -->
     <div class="grid gap-6 sm:grid-cols-1 md:grid-cols-4">
       <div
         class="group col-span-full space-y-4 rounded-xl border border-border/50 bg-background/50 p-4 backdrop-blur-sm sm:p-6 md:col-span-2"
@@ -475,50 +483,62 @@
         <div class="flex items-center justify-between">
           <h3 class="text-lg font-semibold sm:text-xl">Environmental Conditions</h3>
           <div class="rounded-full bg-blue-500/10 p-2">
-            <Flame class="h-5 w-5 text-blue-500" />
+            <Waves class="h-5 w-5 text-blue-500" />
           </div>
         </div>
 
         <div class="grid grid-cols-2 gap-3 sm:gap-4">
           <div class="space-y-2 rounded-lg bg-background/50 p-3 sm:p-4">
             <div class="flex items-center gap-2">
-              <AlertTriangle class="h-4 w-4 text-blue-500" />
+              <AlertTriangle class="h-4 w-4 text-red-500" />
               <span class="text-xs text-muted-foreground sm:text-sm">Risk Assessment</span>
             </div>
-            <p class="text-xl font-semibold text-blue-500 sm:text-2xl">
+            <p class="text-xl font-semibold text-red-500 sm:text-2xl">
               {environmentalData.riskLevel}
             </p>
           </div>
 
           <div class="space-y-2 rounded-lg bg-background/50 p-3 sm:p-4">
             <div class="flex items-center gap-2">
-              <Thermometer class="h-4 w-4 text-sky-500" />
-              <span class="text-xs text-muted-foreground sm:text-sm">Temperature</span>
-            </div>
-            <p class="text-xl font-semibold text-sky-500 sm:text-2xl">
-              {environmentalData.temperature}
-            </p>
-          </div>
-
-          <div class="space-y-2 rounded-lg bg-background/50 p-3 sm:p-4">
-            <div class="flex items-center gap-2">
-              <Wind class="h-4 w-4 text-blue-500" />
-              <span class="text-xs text-muted-foreground sm:text-sm">Wind Velocity</span>
+              <Waves class="h-4 w-4 text-blue-500" />
+              <span class="text-xs text-muted-foreground sm:text-sm">Soil Saturation</span>
             </div>
             <p class="text-xl font-semibold text-blue-500 sm:text-2xl">
-              {environmentalData.windSpeed}
+              {environmentalData.soilSaturation}
             </p>
           </div>
 
           <div class="space-y-2 rounded-lg bg-background/50 p-3 sm:p-4">
             <div class="flex items-center gap-2">
-              <Activity class="h-4 w-4 text-sky-500" />
-              <span class="text-xs text-muted-foreground sm:text-sm">Relative Humidity</span>
+              <ChartArea class="h-4 w-4 text-yellow-500" />
+              <span class="text-xs text-muted-foreground sm:text-sm">Rainfall Intensity</span>
             </div>
-            <p class="text-xl font-semibold text-sky-500 sm:text-2xl">
-              {environmentalData.humidity}
+            <p class="text-xl font-semibold text-yellow-500 sm:text-2xl">
+              {environmentalData.rainfallIntensity}
             </p>
           </div>
+
+          <div class="space-y-2 rounded-lg bg-background/50 p-3 sm:p-4">
+            <div class="flex items-center gap-2">
+              <Waves class="h-4 w-4 text-cyan-500" />
+              <span class="text-xs text-muted-foreground sm:text-sm">Water Level</span>
+            </div>
+            <p class="text-xl font-semibold text-cyan-500 sm:text-2xl">
+              {environmentalData.waterLevel}
+            </p>
+          </div>
+        </div>
+
+        <div class="flex justify-start sm:justify-end">
+          <button
+            class="group relative inline-flex items-center justify-center gap-2 rounded-xl border border-border/50 bg-background/50 px-4 py-2 text-sm font-medium text-foreground shadow-lg backdrop-blur-sm transition-all hover:border-blue-500/50 hover:bg-background/90 focus:outline-none focus:ring-2 focus:ring-blue-500/50 active:scale-95 sm:text-base"
+          >
+            <span>more parameters</span>
+            <ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            <div
+              class="absolute -inset-px rounded-xl bg-gradient-to-r from-blue-500/10 to-sky-500/10 opacity-0 blur transition duration-300 group-hover:opacity-100"
+            ></div>
+          </button>
         </div>
 
         <p class="mt-1 text-sm text-muted-foreground">
@@ -544,10 +564,10 @@
         <div class="grid grid-cols-2 gap-3 sm:gap-4">
           <div class="space-y-2 rounded-lg bg-background/50 p-3 sm:p-4">
             <div class="flex items-center gap-2">
-              <Clock class="h-4 w-4 text-sky-500" />
+              <Clock class="h-4 w-4 text-green-500" />
               <span class="text-xs text-muted-foreground sm:text-sm">Latency</span>
             </div>
-            <p class="text-xl font-semibold text-sky-500 sm:text-2xl">
+            <p class="text-xl font-semibold text-green-500 sm:text-2xl">
               {iotData.latency}
             </p>
           </div>
@@ -564,23 +584,35 @@
 
           <div class="space-y-2 rounded-lg bg-background/50 p-3 sm:p-4">
             <div class="flex items-center gap-2">
-              <Users class="h-4 w-4 text-sky-500" />
+              <Users class="h-4 w-4 text-purple-500" />
               <span class="text-xs text-muted-foreground sm:text-sm">Active Devices</span>
             </div>
-            <p class="text-xl font-semibold text-sky-500 sm:text-2xl">
+            <p class="text-xl font-semibold text-purple-500 sm:text-2xl">
               {iotData.activeDevices}
             </p>
           </div>
 
           <div class="space-y-2 rounded-lg bg-background/50 p-3 sm:p-4">
             <div class="flex items-center gap-2">
-              <Activity class="h-4 w-4 text-blue-500" />
+              <Activity class="h-4 w-4 text-yellow-500" />
               <span class="text-xs text-muted-foreground sm:text-sm">Data Quality</span>
             </div>
-            <p class="text-xl font-semibold text-blue-500 sm:text-2xl">
+            <p class="text-xl font-semibold text-yellow-500 sm:text-2xl">
               {iotData.dataQuality}
             </p>
           </div>
+        </div>
+
+        <div class="flex justify-start sm:justify-end">
+          <button
+            class="group relative inline-flex items-center justify-center gap-2 rounded-xl border border-border/50 bg-background/50 px-4 py-2 text-sm font-medium text-foreground shadow-lg backdrop-blur-sm transition-all hover:border-blue-500/50 hover:bg-background/90 focus:outline-none focus:ring-2 focus:ring-blue-500/50 active:scale-95 sm:text-base"
+          >
+            <span>more parameters</span>
+            <ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            <div
+              class="absolute -inset-px rounded-xl bg-gradient-to-r from-blue-500/10 to-sky-500/10 opacity-0 blur transition duration-300 group-hover:opacity-100"
+            ></div>
+          </button>
         </div>
 
         <p class="mt-1 text-sm text-muted-foreground">
@@ -611,7 +643,7 @@
 
       <!-- Community Support -->
       <div
-        class="col-span-full rounded-xl border border-border/50 bg-background/50 p-4 backdrop-blur-sm sm:p-6 md:col-span-2"
+        class="col-span-full h-fit rounded-xl border border-border/50 bg-background/50 p-4 backdrop-blur-sm sm:p-6 md:col-span-2"
       >
         <div class="mb-4 flex items-center gap-2">
           <Users class="h-5 w-5 text-primary" />
@@ -626,8 +658,8 @@
             <button
               class="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
             >
-              <Signal class="h-4 w-4" />
-              Join Local Chat
+              <MessageCircle class="h-4 w-4" />
+              Join Regional Chat
             </button>
             <button
               class="inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-background px-4 py-2 text-sm font-medium text-foreground hover:bg-accent"
@@ -643,16 +675,16 @@
     <!-- Historical Incidents -->
     <div class="space-y-4 sm:space-y-6">
       <div class="flex items-center gap-3">
-        <History class="h-6 w-6 text-sky-500" />
+        <History class="h-6 w-6 text-orange-500" />
         <h3 class="text-xl font-semibold sm:text-2xl">Historical Incidents</h3>
       </div>
       <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {#each historicalIncidents as incident}
           <div
-            class="group relative overflow-hidden rounded-xl border border-border/50 bg-background/50 p-4 backdrop-blur-sm transition-all duration-300 hover:border-sky-500/50 sm:p-6"
+            class="group relative overflow-hidden rounded-xl border border-border/50 bg-background/50 p-4 backdrop-blur-sm transition-all duration-300 hover:border-orange-500/50 sm:p-6"
           >
             <div
-              class="absolute -inset-px rounded-xl bg-gradient-to-r from-sky-500/10 to-blue-500/10 opacity-0 blur transition duration-300 group-hover:opacity-100"
+              class="absolute -inset-px rounded-xl bg-gradient-to-r from-orange-500/10 to-red-500/10 opacity-0 blur transition duration-300 group-hover:opacity-100"
             ></div>
             <div class="relative space-y-4">
               <div class="flex items-center justify-between">
