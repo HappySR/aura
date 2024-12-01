@@ -20,6 +20,7 @@
     LogOut
   } from "lucide-svelte";
   import { mode, setMode } from "mode-watcher";
+  import { cn } from "$lib/utils";
 
   // User preferences
   let preferences = {
@@ -108,16 +109,33 @@
 <div
   class="min-h-screen w-full bg-gradient-to-b from-background to-background/95 px-4 py-6 md:px-8 lg:px-12"
 >
+  <!-- Background Gradient -->
+  <div class="absolute inset-0 flex items-center justify-center">
+    <div
+      class="absolute h-full w-full bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 blur-3xl saturate-200 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"
+    ></div>
+  </div>
+
   <div class="mx-auto max-w-7xl space-y-8">
     <!-- Header -->
-    <div class="mt-20 space-y-4">
-      <h1
-        class="bg-gradient-to-r from-primary via-primary/80 to-primary bg-clip-text text-center text-4xl font-bold tracking-tight text-transparent md:text-left md:text-5xl"
+    <div class="mb-16 mt-12 text-center md:mb-24">
+      <div class="relative">
+        <div
+          class="absolute -inset-[50px] animate-[pulse_6s_ease-in-out_infinite] rounded-full bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 opacity-30 blur-2xl"
+        ></div>
+        <h1
+          class={cn(
+            "relative bg-gradient-to-tr from-primary via-foreground to-accent bg-clip-text pb-4 text-3xl font-bold text-transparent drop-shadow-sm",
+            "sm:text-4xl md:text-5xl lg:text-6xl"
+          )}
+        >
+          Settings
+        </h1>
+      </div>
+      <p
+        class="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-muted-foreground/80 sm:text-base md:text-lg"
       >
-        Settings
-      </h1>
-      <p class="text-center text-muted-foreground md:text-left">
-        Manage your account settings and preferences
+        Enhance your emergency preparedness through our comprehensive training modules.
       </p>
     </div>
 
@@ -141,7 +159,7 @@
       <div class="w-full space-y-6 lg:w-2/3">
         <!-- Profile Section -->
         <div
-          class="group rounded-xl border border-border/50 bg-background/20 p-6 backdrop-blur-sm transition-all hover:border-primary/50"
+          class="group rounded-xl border border-border/50 bg-background/20 p-6 backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:border-primary/50 hover:shadow-[0_0_1rem_0.25rem_rgba(0,0,0,0.04),0_2rem_2rem_-1rem_rgba(0,0,0,0.1)]"
           bind:this={settingsSections[0]}
         >
           <div class="mb-4 flex items-center gap-3">
@@ -151,8 +169,9 @@
 
           <div class="grid gap-4 md:grid-cols-2">
             <div class="space-y-2">
-              <label class="text-sm text-muted-foreground">Display Name</label>
+              <label for="name" class="text-sm text-muted-foreground">Display Name</label>
               <input
+                id="name"
                 type="text"
                 class="w-full rounded-lg border border-border/50 bg-background/50 px-3 py-2"
                 value="John Doe"
@@ -160,8 +179,9 @@
             </div>
 
             <div class="space-y-2">
-              <label class="text-sm text-muted-foreground">Email</label>
+              <label for="email" class="text-sm text-muted-foreground">Email</label>
               <input
+                id="email"
                 type="email"
                 class="w-full rounded-lg border border-border/50 bg-background/50 px-3 py-2"
                 value="john@example.com"
@@ -169,8 +189,9 @@
             </div>
 
             <div class="space-y-2">
-              <label class="text-sm text-muted-foreground">Phone Number</label>
+              <label for="phone" class="text-sm text-muted-foreground">Phone Number</label>
               <input
+                id="phone"
                 type="tel"
                 class="w-full rounded-lg border border-border/50 bg-background/50 px-3 py-2"
                 value="+91 98765-43210"
@@ -178,8 +199,9 @@
             </div>
 
             <div class="space-y-2">
-              <label class="text-sm text-muted-foreground">Organization</label>
+              <label for="org" class="text-sm text-muted-foreground">Organization</label>
               <input
+                id="org"
                 type="text"
                 class="w-full rounded-lg border border-border/50 bg-background/50 px-3 py-2"
                 value="Aurialis Technologies"
@@ -190,7 +212,7 @@
 
         <!-- Security -->
         <div
-          class="group rounded-xl border border-border/50 bg-background/20 p-6 backdrop-blur-sm transition-all hover:border-primary/50"
+          class="group rounded-xl border border-border/50 bg-background/20 p-6 backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:border-primary/50 hover:shadow-[0_0_1rem_0.25rem_rgba(0,0,0,0.04),0_2rem_2rem_-1rem_rgba(0,0,0,0.1)]"
           bind:this={settingsSections[1]}
         >
           <div class="mb-4 flex items-center gap-3">
@@ -249,7 +271,7 @@
 
         <!-- Language & Region -->
         <div
-          class="group rounded-xl border border-border/50 bg-background/20 p-6 backdrop-blur-sm transition-all hover:border-primary/50"
+          class="group rounded-xl border border-border/50 bg-background/20 p-6 backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:border-primary/50 hover:shadow-[0_0_1rem_0.25rem_rgba(0,0,0,0.04),0_2rem_2rem_-1rem_rgba(0,0,0,0.1)]"
           bind:this={settingsSections[2]}
         >
           <div class="mb-4 flex items-center gap-3">
@@ -291,7 +313,7 @@
       <div class="w-full space-y-6 lg:w-1/3">
         <!-- Appearance -->
         <div
-          class="group rounded-xl border border-border/50 bg-background/20 p-6 backdrop-blur-sm transition-all hover:border-primary/50"
+          class="group rounded-xl border border-border/50 bg-background/20 p-6 backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:border-primary/50 hover:shadow-[0_0_1rem_0.25rem_rgba(0,0,0,0.04),0_2rem_2rem_-1rem_rgba(0,0,0,0.1)]"
           bind:this={settingsSections[3]}
         >
           <div class="mb-4 flex items-center gap-3">
@@ -322,7 +344,7 @@
 
         <!-- Notifications -->
         <div
-          class="group rounded-xl border border-border/50 bg-background/20 p-6 backdrop-blur-sm transition-all hover:border-primary/50"
+          class="group rounded-xl border border-border/50 bg-background/20 p-6 backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:border-primary/50 hover:shadow-[0_0_1rem_0.25rem_rgba(0,0,0,0.04),0_2rem_2rem_-1rem_rgba(0,0,0,0.1)]"
           bind:this={settingsSections[4]}
         >
           <div class="mb-4 flex items-center gap-3">
@@ -378,7 +400,7 @@
 
         <!-- Data & Privacy -->
         <div
-          class="group rounded-xl border border-border/50 bg-background/20 p-6 backdrop-blur-sm transition-all hover:border-primary/50"
+          class="group rounded-xl border border-border/50 bg-background/20 p-6 backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:border-primary/50 hover:shadow-[0_0_1rem_0.25rem_rgba(0,0,0,0.04),0_2rem_2rem_-1rem_rgba(0,0,0,0.1)]"
           bind:this={settingsSections[5]}
         >
           <div class="mb-4 flex items-center gap-3">
