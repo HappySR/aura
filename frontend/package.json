@@ -12,9 +12,7 @@
     "lint": "prettier --check . && eslint .",
     "db:push": "drizzle-kit push",
     "db:migrate": "drizzle-kit migrate",
-    "db:studio": "drizzle-kit studio",
-    "dc:up": "docker compose up -d",
-    "dc:down": "docker compose down"
+    "db:studio": "drizzle-kit studio"
   },
   "devDependencies": {
     "@sveltejs/adapter-node": "^5.2.9",
@@ -28,6 +26,7 @@
     "autoprefixer": "^10.4.20",
     "bits-ui": "1.0.0-next.65",
     "clsx": "^2.1.1",
+    "dotenv": "^16.4.5",
     "drizzle-kit": "^0.22.8",
     "eslint": "^9.16.0",
     "eslint-config-prettier": "^9.1.0",

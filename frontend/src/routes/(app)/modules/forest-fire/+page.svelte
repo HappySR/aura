@@ -21,7 +21,7 @@
     ChartArea,
     History,
     DollarSign,
-    MessageCircle
+    MessageCircle,
   } from "lucide-svelte";
   import { onMount } from "svelte";
   // @ts-ignore
@@ -31,7 +31,7 @@
   const currentLocation = {
     region: "XYZ Park",
     coordinates: { lat: 26.5833, lng: 93.17 },
-    lastUpdated: new Date()
+    lastUpdated: new Date(),
   };
 
   // Environmental conditions
@@ -40,7 +40,7 @@
     temperature: "258°C",
     windSpeed: "15 km/h",
     humidity: "7%",
-    lastUpdated: new Date().toLocaleTimeString()
+    lastUpdated: new Date().toLocaleTimeString(),
   };
 
   // IoT sensor data
@@ -49,7 +49,7 @@
     signalStrength: "Good",
     lastSync: new Date().toLocaleTimeString(),
     activeDevices: 8,
-    dataQuality: "94.7%"
+    dataQuality: "94.7%",
   };
 
   // Type definitions
@@ -88,7 +88,7 @@
       area: "2.5 km²",
       containment: "35%",
       evacuationStatus: "Mandatory",
-      distance: "2.5 km away"
+      distance: "2.5 km away",
     },
     {
       location: "Zone XYZ-002",
@@ -96,7 +96,7 @@
       area: "1.2 km²",
       containment: "65%",
       evacuationStatus: "Advisory",
-      distance: "5 km away"
+      distance: "5 km away",
     },
     {
       location: "Region XYZ-003",
@@ -104,8 +104,8 @@
       area: "1.8 km²",
       containment: "45%",
       evacuationStatus: "Mandatory",
-      distance: "3.8 km away"
-    }
+      distance: "3.8 km away",
+    },
   ];
 
   // Historical fire incidents
@@ -121,7 +121,7 @@
       propertyDamage: "₹16.5 Cr",
       containmentTime: "96 hours",
       description:
-        "One of the largest fires in the region's history, requiring extensive aerial support."
+        "One of the largest fires in the region's history, requiring extensive aerial support.",
     },
     {
       id: 2,
@@ -134,7 +134,7 @@
       propertyDamage: "₹1 Cr",
       containmentTime: "60 hours",
       description:
-        "Rapid spread due to strong winds, successfully contained with minimal structural damage."
+        "Rapid spread due to strong winds, successfully contained with minimal structural damage.",
     },
     {
       id: 3,
@@ -146,8 +146,8 @@
       casualties: 0,
       propertyDamage: "₹66 Lakh",
       containmentTime: "48 hours",
-      description: "Early detection allowed for quick response and minimal environmental impact."
-    }
+      description: "Early detection allowed for quick response and minimal environmental impact.",
+    },
   ];
 
   // Safety guidelines
@@ -156,29 +156,29 @@
     { id: 2, guideline: "Prepare and regularly update your emergency evacuation strategy" },
     { id: 3, guideline: "Maintain a well-stocked emergency supply kit" },
     { id: 4, guideline: "Stay informed through official news channels and emergency alerts" },
-    { id: 5, guideline: "Comply immediately with all evacuation directives" }
+    { id: 5, guideline: "Comply immediately with all evacuation directives" },
   ];
 
   const footerLinks = {
     company: [
       { label: "About", href: "/about" },
-      { label: "Careers", href: "/careers" }
+      { label: "Careers", href: "/careers" },
     ],
     resources: [
       { label: "Documentation", href: "/docs" },
       { label: "Training", href: "/training" },
-      { label: "Privacy Policy", href: "/privacy" }
+      { label: "Privacy Policy", href: "/privacy" },
     ],
     contact: {
       email: "aura@aurialis.com",
       phone: "+91 9876-543-210",
-      address: "123 Emergency Ave, Safety City, SC 12345"
+      address: "123 Emergency Ave, Safety City, SC 12345",
     },
     social: [
       { icon: Github, href: "https://github.com/aura" },
       { icon: Twitter, href: "https://twitter.com/aura" },
-      { icon: Linkedin, href: "https://linkedin.com/company/aura" }
-    ]
+      { icon: Linkedin, href: "https://linkedin.com/company/aura" },
+    ],
   };
 
   // Canvas elements
@@ -191,7 +191,7 @@
   const fireLocations = [
     { x: 0.3, y: 0.4, intensity: 0.8 },
     { x: 0.7, y: 0.6, intensity: 0.5 },
-    { x: 0.5, y: 0.3, intensity: 0.7 }
+    { x: 0.5, y: 0.3, intensity: 0.7 },
   ];
 
   async function renderMap() {
@@ -235,7 +235,7 @@
         // @ts-ignore
         const [x, y] = projection([
           currentLocation.coordinates.lng + (fire.x - 0.5) * 2,
-          currentLocation.coordinates.lat + (fire.y - 0.5) * 2
+          currentLocation.coordinates.lat + (fire.y - 0.5) * 2,
         ]);
 
         const gradient = svg
@@ -290,7 +290,7 @@
     const updateInterval = setInterval(() => {
       environmentalData = {
         ...environmentalData,
-        lastUpdated: new Date().toLocaleTimeString()
+        lastUpdated: new Date().toLocaleTimeString(),
       };
       renderMap();
     }, 5000);

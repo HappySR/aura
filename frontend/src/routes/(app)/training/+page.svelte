@@ -11,7 +11,7 @@
     MapPin,
     Github,
     Twitter,
-    Linkedin
+    Linkedin,
   } from "lucide-svelte";
   import { cn } from "$lib/utils";
 
@@ -22,14 +22,14 @@
       description:
         "Learn fundamental emergency response protocols and best practices for different disaster scenarios.",
       duration: "2 hours",
-      level: "Beginner"
+      level: "Beginner",
     },
     {
       icon: Activity,
       title: "First Aid & Medical",
       description: "Essential first aid techniques and medical emergency handling procedures.",
       duration: "3 hours",
-      level: "Intermediate"
+      level: "Intermediate",
     },
     {
       icon: Users,
@@ -37,7 +37,7 @@
       description:
         "Strategies for effective community organization and coordination during emergencies.",
       duration: "1.5 hours",
-      level: "Beginner"
+      level: "Beginner",
     },
     {
       icon: BookOpen,
@@ -45,30 +45,30 @@
       description:
         "Comprehensive preparation guides for different types of natural and man-made disasters.",
       duration: "4 hours",
-      level: "Advanced"
-    }
+      level: "Advanced",
+    },
   ];
 
   const footerLinks = {
     company: [
       { label: "About", href: "/about" },
-      { label: "Careers", href: "/careers" }
+      { label: "Careers", href: "/careers" },
     ],
     resources: [
       { label: "Documentation", href: "/docs" },
       { label: "Training", href: "/training" },
-      { label: "Privacy Policy", href: "/privacy" }
+      { label: "Privacy Policy", href: "/privacy" },
     ],
     contact: {
       email: "aura@aurialis.com",
       phone: "+91 9876-543-210",
-      address: "123 Emergency Ave, Safety City, SC 12345"
+      address: "123 Emergency Ave, Safety City, SC 12345",
     },
     social: [
       { icon: Github, href: "https://github.com/aura" },
       { icon: Twitter, href: "https://twitter.com/aura" },
-      { icon: Linkedin, href: "https://linkedin.com/company/aura" }
-    ]
+      { icon: Linkedin, href: "https://linkedin.com/company/aura" },
+    ],
   };
 </script>
 
@@ -92,7 +92,7 @@
         <h1
           class={cn(
             "relative bg-gradient-to-tr from-primary via-foreground to-accent bg-clip-text pb-4 text-3xl font-bold text-transparent drop-shadow-sm",
-            "sm:text-4xl md:text-5xl lg:text-6xl"
+            "sm:text-4xl md:text-5xl lg:text-6xl",
           )}
         >
           Training & Preparedness
@@ -114,7 +114,7 @@
         <div
           class={cn(
             "group rounded-2xl border border-border/30 bg-background/40 p-6 backdrop-blur-xl transition-all duration-300",
-            "hover:-translate-y-2 hover:border-border/50 hover:shadow-lg md:p-8"
+            "hover:-translate-y-2 hover:border-border/50 hover:shadow-lg md:p-8",
           )}
         >
           <div

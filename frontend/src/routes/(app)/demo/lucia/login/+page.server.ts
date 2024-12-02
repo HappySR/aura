@@ -38,7 +38,7 @@ export const actions: Actions = {
       memoryCost: 19456,
       timeCost: 2,
       outputLen: 32,
-      parallelism: 1
+      parallelism: 1,
     });
     if (!validPassword) {
       return fail(400, { message: "Incorrect username or password" });
@@ -68,7 +68,7 @@ export const actions: Actions = {
       memoryCost: 19456,
       timeCost: 2,
       outputLen: 32,
-      parallelism: 1
+      parallelism: 1,
     });
 
     try {
@@ -81,7 +81,7 @@ export const actions: Actions = {
       return fail(500, { message: "An error has occurred" });
     }
     return redirect(302, "/demo/lucia");
-  }
+  },
 };
 
 function generateUserId() {

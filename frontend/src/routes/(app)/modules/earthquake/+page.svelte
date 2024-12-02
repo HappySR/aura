@@ -21,7 +21,7 @@
     History,
     DollarSign,
     Waves,
-    MessageCircle
+    MessageCircle,
   } from "lucide-svelte";
   import { onMount } from "svelte";
   // @ts-ignore
@@ -31,7 +31,7 @@
   const currentLocation = {
     region: "Seismic Zone III",
     coordinates: { lat: 26.5833, lng: 93.17 },
-    lastUpdated: new Date()
+    lastUpdated: new Date(),
   };
 
   // Environmental conditions
@@ -40,7 +40,7 @@
     seismicActivity: "4.2 ML",
     groundMotion: "0.15g",
     faultMovement: "2.1 mm",
-    lastUpdated: new Date().toLocaleTimeString()
+    lastUpdated: new Date().toLocaleTimeString(),
   };
 
   // IoT sensor data
@@ -49,7 +49,7 @@
     signalStrength: "Excellent",
     lastSync: new Date().toLocaleTimeString(),
     activeDevices: 29,
-    dataQuality: "98.4%"
+    dataQuality: "98.4%",
   };
 
   // Type definitions
@@ -89,7 +89,7 @@
       area: "15 km²",
       magnitude: "4.8 ML",
       evacuationStatus: "Mandatory",
-      distance: "2.5 km away"
+      distance: "2.5 km away",
     },
     {
       location: "Epicenter B-002",
@@ -97,7 +97,7 @@
       area: "8 km²",
       magnitude: "3.2 ML",
       evacuationStatus: "Advisory",
-      distance: "5 km away"
+      distance: "5 km away",
     },
     {
       location: "Fault Line C-003",
@@ -105,8 +105,8 @@
       area: "12 km²",
       magnitude: "4.1 ML",
       evacuationStatus: "Mandatory",
-      distance: "3.8 km away"
-    }
+      distance: "3.8 km away",
+    },
   ];
 
   // Historical earthquake incidents
@@ -123,7 +123,7 @@
       magnitude: "5.2 ML",
       description:
         "One of the strongest earthquakes in the region's history, causing significant structural damage.",
-      containmentTime: "2 hours"
+      containmentTime: "2 hours",
     },
     {
       id: 2,
@@ -136,7 +136,7 @@
       propertyDamage: "₹1.2 Cr",
       magnitude: "4.5 ML",
       description: "Moderate earthquake with aftershocks continuing for several hours.",
-      containmentTime: "1.5 hours"
+      containmentTime: "1.5 hours",
     },
     {
       id: 3,
@@ -149,8 +149,8 @@
       propertyDamage: "₹75.4 L",
       magnitude: "3.8 ML",
       description: "Minor earthquake with minimal structural damage reported.",
-      containmentTime: "45 minutes"
-    }
+      containmentTime: "45 minutes",
+    },
   ];
 
   // Safety guidelines
@@ -160,32 +160,32 @@
     { id: 3, guideline: "Keep emergency supplies in an easily accessible location" },
     {
       id: 4,
-      guideline: "Know the safe spots in each room - under sturdy tables or against interior walls"
+      guideline: "Know the safe spots in each room - under sturdy tables or against interior walls",
     },
     { id: 5, guideline: "Have a family emergency communication plan ready" },
-    { id: 6, guideline: "Keep important documents in a waterproof, portable container" }
+    { id: 6, guideline: "Keep important documents in a waterproof, portable container" },
   ];
 
   const footerLinks = {
     company: [
       { label: "About", href: "/about" },
-      { label: "Careers", href: "/careers" }
+      { label: "Careers", href: "/careers" },
     ],
     resources: [
       { label: "Documentation", href: "/docs" },
       { label: "Training", href: "/training" },
-      { label: "Privacy Policy", href: "/privacy" }
+      { label: "Privacy Policy", href: "/privacy" },
     ],
     contact: {
       email: "aura@aurialis.com",
       phone: "+91 9876-543-210",
-      address: "123 Emergency Ave, Safety City, SC 12345"
+      address: "123 Emergency Ave, Safety City, SC 12345",
     },
     social: [
       { icon: Github, href: "https://github.com/aura" },
       { icon: Twitter, href: "https://twitter.com/aura" },
-      { icon: Linkedin, href: "https://linkedin.com/company/aura" }
-    ]
+      { icon: Linkedin, href: "https://linkedin.com/company/aura" },
+    ],
   };
 
   // Canvas elements
@@ -198,7 +198,7 @@
   const floodLocations = [
     { x: 0.3, y: 0.4, intensity: 0.8 },
     { x: 0.7, y: 0.6, intensity: 0.5 },
-    { x: 0.5, y: 0.3, intensity: 0.7 }
+    { x: 0.5, y: 0.3, intensity: 0.7 },
   ];
 
   async function renderMap() {
@@ -242,7 +242,7 @@
         // @ts-ignore
         const [x, y] = projection([
           currentLocation.coordinates.lng + (quake.x - 0.5) * 2,
-          currentLocation.coordinates.lat + (quake.y - 0.5) * 2
+          currentLocation.coordinates.lat + (quake.y - 0.5) * 2,
         ]);
 
         const gradient = svg
@@ -297,7 +297,7 @@
     const updateInterval = setInterval(() => {
       environmentalData = {
         ...environmentalData,
-        lastUpdated: new Date().toLocaleTimeString()
+        lastUpdated: new Date().toLocaleTimeString(),
       };
       renderMap();
     }, 5000);

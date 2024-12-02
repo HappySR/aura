@@ -17,7 +17,7 @@
     Twitter,
     Linkedin,
     Search,
-    ChartArea
+    ChartArea,
   } from "lucide-svelte";
   import { cn } from "$lib/utils";
   import { fade } from "svelte/transition";
@@ -55,20 +55,20 @@
       name: "Forest Fire",
       description: "Real-time fire tracking & evacuation routes",
       icon: Flame,
-      link: "/modules/forest-fire"
+      link: "/modules/forest-fire",
     },
     {
       name: "Flood",
       description: "Flood history, water bed & intensity monitoring",
       icon: Waves,
-      link: "/modules/flood"
+      link: "/modules/flood",
     },
     {
       name: "Earthquake",
       description: "Seismic history, area & intensity monitoring",
       icon: Activity,
-      link: "/modules/earthquake"
-    }
+      link: "/modules/earthquake",
+    },
   ];
 
   const coreFeatures = [
@@ -77,72 +77,72 @@
       title: "Real-time Alerts",
       description:
         "Get instant notifications about emergencies, weather alerts, evacuation orders and critical updates through SMS, email, and push notifications to stay informed and prepared.",
-      link: "/alerts"
+      link: "/alerts",
     },
     {
       icon: BookOpen,
       title: "History Tracking",
       description:
         "Access detailed historical data of past incidents, response patterns, and outcomes to better understand and prepare for future emergencies.",
-      link: "/history"
+      link: "/history",
     },
     {
       icon: Boxes,
       title: "IoT Integration",
       description:
         "Connect with smart sensors and devices to monitor environmental conditions, detect hazards early, and automate emergency responses.",
-      link: "/iot"
+      link: "/iot",
     },
     {
       icon: Shield,
       title: "Custom Mapping",
       description:
         "Interactive maps with real-time updates, custom overlays, and location-based services to visualize threats and plan evacuation routes.",
-      link: "/maps"
+      link: "/maps",
     },
     {
       icon: Users,
       title: "Community Network",
       description:
         "Engage with the community, fill surveys, share your thoughts and help everybody stay safe!",
-      link: "/community"
+      link: "/community",
     },
     {
       icon: BookOpen,
       title: "Preparedness Training",
       description:
         "Interactive guides, scenario simulations and regular drill schedules for readiness.",
-      link: "/training"
-    }
+      link: "/training",
+    },
   ];
 
   const emergencyStats = [
     { value: "24/7", label: "Support Available" },
     { value: "98%", label: "Response Rate" },
     { value: "15min", label: "Average Response Time" },
-    { value: "10+", label: "Regional Coverage" }
+    { value: "10+", label: "Regional Coverage" },
   ];
 
   const footerLinks = {
     company: [
       { label: "About", href: "/about" },
-      { label: "Careers", href: "/careers" }
+      { label: "Careers", href: "/careers" },
     ],
     resources: [
       { label: "Documentation", href: "/docs" },
       { label: "Training", href: "/training" },
-      { label: "Privacy Policy", href: "/privacy" }
+      { label: "Privacy Policy", href: "/privacy" },
     ],
     contact: {
       email: "aura@aurialis.com",
       phone: "+91 9876-543-210",
-      address: "123 Emergency Ave, Safety City, SC 12345"
+      address: "123 Emergency Ave, Safety City, SC 12345",
     },
     social: [
       { icon: Github, href: "https://github.com/aura" },
       { icon: Twitter, href: "https://twitter.com/aura" },
-      { icon: Linkedin, href: "https://linkedin.com/company/aura" }
-    ]
+      { icon: Linkedin, href: "https://linkedin.com/company/aura" },
+    ],
   };
 </script>
 
@@ -350,7 +350,7 @@
           <h1
             class={cn(
               "animate-fade-up bg-gradient-to-tr from-primary via-foreground to-accent bg-clip-text text-5xl font-extrabold tracking-tight text-transparent drop-shadow-sm",
-              "xs:text-6xl sm:text-6xl md:text-7xl lg:text-8xl"
+              "xs:text-6xl sm:text-6xl md:text-7xl lg:text-8xl",
             )}
           >
             AURA<span class="text-primary">.</span>
@@ -358,7 +358,7 @@
           <p
             class={cn(
               "animate-fade-up mt-4 text-2xl font-semibold tracking-wide text-muted-foreground/90",
-              "xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
+              "xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl",
             )}
           >
             adaptive unified resilience & alerts
@@ -366,7 +366,7 @@
           <p
             class={cn(
               "animate-fade-up mt-8 max-w-2xl text-base leading-relaxed text-muted-foreground/90 backdrop-blur-sm",
-              "sm:text-lg md:text-xl"
+              "sm:text-lg md:text-xl",
             )}
           >
             Your one-stop solution for disaster preparedness, response, and recovery.
@@ -467,7 +467,7 @@
             <div
               class={cn(
                 "group relative rounded-3xl border border-border/10 bg-background/10 p-8 backdrop-blur-sm transition-all duration-500",
-                "hover:scale-[1.02] hover:border-border/30 hover:bg-background/20 hover:shadow-xl"
+                "hover:scale-[1.02] hover:border-border/30 hover:bg-background/20 hover:shadow-xl",
               )}
             >
               <div
@@ -477,7 +477,7 @@
                     ? "from-red-500/10 to-red-500/10"
                     : i === 1
                       ? "from-blue-500/10 to-blue-500/10"
-                      : "from-emerald-500/10 to-emerald-500/10"
+                      : "from-emerald-500/10 to-emerald-500/10",
                 )}
               ></div>
               <div
@@ -487,7 +487,7 @@
                     ? "from-red-500/20 to-red-500/20"
                     : i === 1
                       ? "from-blue-500/20 to-blue-500/20"
-                      : "from-emerald-500/20 to-emerald-500/20"
+                      : "from-emerald-500/20 to-emerald-500/20",
                 )}
               ></div>
 
@@ -500,7 +500,7 @@
                         ? "bg-red-500/10 group-hover:bg-red-500/20"
                         : i === 1
                           ? "bg-blue-500/10 group-hover:bg-blue-500/20"
-                          : "bg-emerald-500/10 group-hover:bg-emerald-500/20"
+                          : "bg-emerald-500/10 group-hover:bg-emerald-500/20",
                     )}
                   >
                     <svelte:component
@@ -508,7 +508,7 @@
                       class={cn(
                         "h-6 w-6",
                         i === 0 ? "text-red-500" : i === 1 ? "text-blue-500" : "text-emerald-500",
-                        "group-hover:animate-bounce"
+                        "group-hover:animate-bounce",
                       )}
                     />
                   </div>
@@ -519,7 +519,7 @@
                         ? "text-red-500 group-hover:text-red-400"
                         : i === 1
                           ? "text-blue-500 group-hover:text-blue-400"
-                          : "text-emerald-500 group-hover:text-emerald-400"
+                          : "text-emerald-500 group-hover:text-emerald-400",
                     )}
                   >
                     {module.name}
@@ -537,7 +537,7 @@
                       ? "text-red-500 group-hover:text-red-400"
                       : i === 1
                         ? "text-blue-500 group-hover:text-blue-400"
-                        : "text-emerald-500 group-hover:text-emerald-400"
+                        : "text-emerald-500 group-hover:text-emerald-400",
                   )}
                 >
                   <a href={module.link}>
@@ -578,7 +578,7 @@
             <div
               class={cn(
                 "group rounded-2xl border border-border/30 bg-background/40 p-6 backdrop-blur-xl transition-all duration-300",
-                "hover:-translate-y-2 hover:border-border/50 hover:shadow-lg md:p-8"
+                "hover:-translate-y-2 hover:border-border/50 hover:shadow-lg md:p-8",
               )}
             >
               <div

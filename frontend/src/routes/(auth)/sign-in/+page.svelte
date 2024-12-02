@@ -38,7 +38,7 @@
       <form
         class={cn(
           "group rounded-2xl border border-border/30 bg-background/40 p-6 backdrop-blur-xl transition-all duration-300",
-          "hover:-translate-y-2 hover:border-border/50 hover:shadow-lg md:p-8"
+          "hover:-translate-y-2 hover:border-border/50 hover:shadow-lg md:p-8",
         )}
       >
         <div class="space-y-2">

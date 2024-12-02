@@ -17,7 +17,7 @@
     Trash2,
     AlertTriangle,
     Download,
-    LogOut
+    LogOut,
   } from "lucide-svelte";
   import { mode, setMode } from "mode-watcher";
   import { cn } from "$lib/utils";
@@ -32,13 +32,13 @@
     emailNotifications: {
       security: true,
       updates: true,
-      marketing: false
+      marketing: false,
     },
     mobileNotifications: {
       alerts: true,
       reminders: true,
-      news: false
-    }
+      news: false,
+    },
   };
 
   // Available languages
@@ -80,7 +80,7 @@
     // Implementation for account deletion
     if (
       confirm(
-        "Are you sure you want to permanently delete your account? This action cannot be undone."
+        "Are you sure you want to permanently delete your account? This action cannot be undone.",
       )
     ) {
       console.log("Deleting account...");
@@ -91,7 +91,7 @@
     // Implementation for data deletion
     if (
       confirm(
-        "Are you sure you want to permanently delete all your data? This action cannot be undone."
+        "Are you sure you want to permanently delete all your data? This action cannot be undone.",
       )
     ) {
       console.log("Deleting all user data...");
@@ -126,7 +126,7 @@
         <h1
           class={cn(
             "relative bg-gradient-to-tr from-primary via-foreground to-accent bg-clip-text pb-4 text-3xl font-bold text-transparent drop-shadow-sm",
-            "sm:text-4xl md:text-5xl lg:text-6xl"
+            "sm:text-4xl md:text-5xl lg:text-6xl",
           )}
         >
           Settings
