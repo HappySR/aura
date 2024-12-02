@@ -1,13 +1,16 @@
 <script lang="ts">
+  import { quintOut } from "svelte/easing";
+  import { slide } from "svelte/transition";
   import { setMode, mode } from "mode-watcher";
+  import { Button } from "$lib/components/ui/button";
   import * as Menubar from "$lib/components/ui/menubar";
   import { Settings, Moon, Sun, User, LogIn, UserPlus, ChevronDown } from "lucide-svelte";
-  import { Button } from "$lib/components/ui/button";
-  import { slide } from "svelte/transition";
-  import { quintOut } from "svelte/easing";
 
-  let isMenuOpen = false;
-  const toggleMenu = () => (isMenuOpen = !isMenuOpen);
+  let isMenuOpen = $state(false);
+
+  function toggleMenu() {
+    isMenuOpen = !isMenuOpen;
+  }
 </script>
 
 <div class="fixed top-0 z-50 w-full">
@@ -23,10 +26,7 @@
 
     <Menubar.Menu>
       <Menubar.Trigger
-        onclick={() => {
-          const newMode = $mode === "dark" ? "light" : "dark";
-          setMode(newMode);
-        }}
+        onclick={() => setMode($mode === "dark" ? "light" : "dark")}
         class="cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:rounded-lg hover:bg-background/40 hover:text-primary hover:shadow-md"
       >
         {#if $mode === "dark"}
@@ -96,10 +96,7 @@
         <Button
           variant="ghost"
           class="flex items-center space-x-2 rounded-lg border border-border/50 bg-background/30 backdrop-blur-3xl transition-all duration-200 hover:scale-[1.02] hover:bg-background/40 hover:text-primary hover:shadow-md"
-          onclick={() => {
-            const newMode = $mode === "dark" ? "light" : "dark";
-            setMode(newMode);
-          }}
+          onclick={() => setMode($mode === "dark" ? "light" : "dark")}
         >
           {#if $mode === "dark"}
             <Sun class="h-4 w-4" />
