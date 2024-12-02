@@ -14,4 +14,4 @@ compose-down:
 
 alias dev := dev-shell
 dev-shell:
-  @nix develop -c $SHELL
+  @nix-shell
