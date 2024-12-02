@@ -11,8 +11,6 @@
     {
       devShell.${system} = pkgs.mkShell {
         buildInputs = with pkgs; [
-          just
-          docker
           pnpm
           nodejs_23
         ];
