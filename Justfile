@@ -12,5 +12,5 @@ alias c-down := compose-down
 compose-down:
   @docker compose down
 
-shell:
-  @nix-shell . --command $SHELL
+shell SHELL="fish":
+  @nix-shell . --command "{{SHELL}}"

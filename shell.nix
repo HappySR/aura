@@ -8,5 +8,4 @@ pkgs.mkShellNoCC {
     pnpm
     nodejs_23
   ];
-  shellHook = "fish";
 }
