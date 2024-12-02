@@ -12,6 +12,5 @@ alias c-down := compose-down
 compose-down:
   @docker compose down
 
-alias dev := dev-shell
-dev-shell:
-  @nix-shell
+shell:
+  @nix-shell . --command $SHELL
