@@ -13,4 +13,4 @@ compose-down:
   @docker compose down
 
 shell SHELL="fish":
-  @nix-shell . --command "{{SHELL}}"
+  @nix develop -c "{{SHELL}}"
