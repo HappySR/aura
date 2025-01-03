@@ -1,21 +1,20 @@
 services:
-  db:
+  aura_db:
     image: postgres:17-alpine
-    restart: always
     ports:
       - 5432:5432
     environment:
-      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB:-aura}
-  broker:
+      POSTGRES_DB: aura_db
+    volumes:
+      - ${HOME}/.var/postgresql/aura_db/data:/var/lib/postgresql/data
+  aura_broker:
     image: rabbitmq:4-management-alpine
-    restart: always
     ports:
       - 5672:5672
       - 15672:15672
-  cache:
+  aura_cache:
     image: valkey/valkey:8-alpine
-    restart: always
     ports:
       - 6379:6379
